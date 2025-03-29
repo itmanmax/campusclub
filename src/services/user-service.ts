@@ -27,16 +27,32 @@ export interface LoginResponse {
 
 export const userService = {
   login: async (username: string, password: string): Promise<LoginResponse> => {
-    const response = await axios.post(`${BASE_URL}/user/login`, {
-      username,
-      password,
-    });
-    return response.data;
+    try {
+      const response = await axios.post(`${BASE_URL}/user/login`, {
+        username,
+        password,
+      });
+      return response.data;
+    } catch (error: any) {
+      console.error('登录错误:', error);
+      if (error.code === 'ERR_NETWORK') {
+        throw new Error('网络连接错误，请检查API服务是否可用');
+      }
+      throw error;
+    }
   },
 
   register: async (data: any) => {
-    const response = await axios.post(`${BASE_URL}/user/register`, data);
-    return response.data;
+    try {
+      const response = await axios.post(`${BASE_URL}/user/register`, data);
+      return response.data;
+    } catch (error: any) {
+      console.error('注册错误:', error);
+      if (error.code === 'ERR_NETWORK') {
+        throw new Error('网络连接错误，请检查API服务是否可用');
+      }
+      throw error;
+    }
   },
 
   sendVerifyCode: async (email: string) => {

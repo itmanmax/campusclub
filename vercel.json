@@ -7,14 +7,17 @@
       "config": { "distDir": "build" }
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "https://campusclub.maxtral.online/api/$1"
-    },
+      "source": "/api/:path*",
+      "destination": "https://campusclub.maxtral.online/api/:path*"
+    }
+  ],
+  "redirects": [
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/((?!api/).*)",
+      "destination": "/index.html",
+      "statusCode": 200
     }
   ],
   "headers": [
