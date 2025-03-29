@@ -69,6 +69,7 @@ const ActivityCalendar: React.FC = () => {
   const fetchActivities = async () => {
     try {
       setLoading(true);
+      console.log('开始获取日历活动列表');
       // 使用正确的API端点获取已加入的活动
       const response = await axios.get('/api/club-user/all-activities', {
         headers: {
@@ -77,10 +78,28 @@ const ActivityCalendar: React.FC = () => {
         }
       });
       
-      if (response.data.code === 200) {
+      console.log('获取到的日历活动数据:', response.data);
+      
+      // 直接检查response.data是不是数组，如果是则直接使用
+      if (Array.isArray(response.data)) {
+        console.log('直接使用数组数据');
+        setActivities(response.data);
+      } 
+      // 如果是标准格式，按正常流程处理
+      else if (response.data && response.data.code === 200) {
+        console.log('标准格式数据处理');
+        setActivities(response.data.data || []);
+      } 
+      // 如果包含data字段但没有code字段
+      else if (response.data && response.data.data && Array.isArray(response.data.data)) {
+        console.log('包含data字段的数据处理');
         setActivities(response.data.data);
-      } else {
-        toast.error(response.data.message || '获取活动列表失败');
+      }
+      // 其他情况显示错误
+      else {
+        console.log('数据格式不匹配，显示错误消息');
+        const message = response.data && response.data.message ? response.data.message : '获取活动列表失败';
+        toast.error(message);
       }
     } catch (err) {
       console.error('获取活动列表失败:', err);

@@ -107,6 +107,7 @@ export const userApi = {
   },
   verifyEmail: (data) => api.post('/user/verify-email', data),
   getCurrentUser: () => api.get('/user/current'),
+  getUserProfile: () => api.get('/user/profile'),
 };
 
 // 社团相关API
