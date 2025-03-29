@@ -3,6 +3,16 @@
     {
       "source": "/api/:path*",
       "destination": "http://campusclub.maxtral.fun/api/:path*"
+    },
+    {
+      "source": "/api/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "Authorization"
+        }
+      ],
+      "destination": "http://campusclub.maxtral.fun/api/:path*"
     }
   ],
   "headers": [

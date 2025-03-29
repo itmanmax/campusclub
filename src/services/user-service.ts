@@ -1,7 +1,4 @@
-import axios from 'axios';
-
-// 修改BASE_URL为相对路径，使用vercel.json中配置的重写规则
-const BASE_URL = '/api';
+import axiosInstance from '../lib/axios-config';
 
 export interface LoginResponse {
   code: number;
@@ -28,7 +25,7 @@ export interface LoginResponse {
 
 export const userService = {
   login: async (username: string, password: string): Promise<LoginResponse> => {
-    const response = await axios.post(`${BASE_URL}/user/login`, {
+    const response = await axiosInstance.post(`/user/login`, {
       username,
       password,
     });
@@ -36,47 +33,34 @@ export const userService = {
   },
 
   register: async (data: any) => {
-    const response = await axios.post(`${BASE_URL}/user/register`, data);
+    const response = await axiosInstance.post(`/user/register`, data);
     return response.data;
   },
 
   sendVerifyCode: async (email: string) => {
-    const response = await axios.post(`${BASE_URL}/user/send-verify-code?email=${email}`);
+    const response = await axiosInstance.post(`/user/send-verify-code?email=${email}`);
     return response.data;
   },
 
   verifyEmail: async (data: { email: string; verifyCode: string }) => {
-    const response = await axios.post(`${BASE_URL}/user/verify-email`, data);
+    const response = await axiosInstance.post(`/user/verify-email`, data);
     return response.data;
   },
 
   getCurrentUser: async () => {
-    const response = await axios.get(`${BASE_URL}/user/profile`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    });
+    const response = await axiosInstance.get(`/user/profile`);
     return response.data;
   },
 
   updateProfile: async (profileData: any) => {
-    const response = await axios.put(`${BASE_URL}/user/profile`, profileData, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    });
+    const response = await axiosInstance.put(`/user/profile`, profileData);
     return response.data;
   },
 
   updatePassword: async (oldPassword: string, newPassword: string) => {
-    const response = await axios.put(
-      `${BASE_URL}/user/password?oldPassword=${oldPassword}&newPassword=${newPassword}`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      }
+    const response = await axiosInstance.put(
+      `/user/password?oldPassword=${oldPassword}&newPassword=${newPassword}`,
+      {}
     );
     return response.data;
   },
