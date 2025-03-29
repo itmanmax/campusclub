@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../../components/ui/card';
-import { userService } from '../../services/user-service';
+import axios from 'axios';
 
 interface LoginProps {
   onLogin: () => void;
@@ -40,20 +40,33 @@ export default function Login({ onLogin }: LoginProps) {
     try {
       console.log('尝试登录:', form);
       
-      const response = await userService.login(form.username, form.password);
-      console.log('登录响应:', response);
-      setDebugInfo(JSON.stringify(response, null, 2));
+      // 直接调用axios进行登录，绕过service层
+      const response = await axios.post('/api/user/login', {
+        username: form.username,
+        password: form.password
+      }, {
+        timeout: 60000, // 60秒超时
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': '*/*'
+        }
+      });
       
-      if (response.code === 200) {
+      console.log('登录响应:', response.data);
+      setDebugInfo(JSON.stringify(response.data, null, 2));
+      
+      if (response.data.code === 200) {
         // 保存完整的用户信息
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('userRole', response.data.role);
-        localStorage.setItem('userId', response.data.userId.toString());
-        localStorage.setItem('username', response.data.username);
-        localStorage.setItem('userProfile', JSON.stringify(response.data));
+        localStorage.setItem('token', response.data.data.token);
+        localStorage.setItem('userRole', response.data.data.role);
+        localStorage.setItem('userId', response.data.data.userId.toString());
+        localStorage.setItem('username', response.data.data.username);
+        localStorage.setItem('userProfile', JSON.stringify(response.data.data));
+        // 记录token的时间戳
+        localStorage.setItem('tokenTimestamp', Date.now().toString());
 
         // 根据角色跳转到不同的仪表盘
-        switch (response.data.role) {
+        switch (response.data.data.role) {
           case 'student':
             navigate('/student');
             break;
@@ -67,11 +80,17 @@ export default function Login({ onLogin }: LoginProps) {
             setError('未知的用户角色');
         }
       } else {
-        setError(response.message || '登录失败');
+        setError(response.data.message || '登录失败');
       }
     } catch (err: any) {
       console.error('登录错误:', err);
-      setError(err.message || '登录失败，请稍后重试');
+      if (err.code === 'ECONNABORTED') {
+        setError('请求超时，服务器响应时间过长');
+      } else if (err.code === 'ERR_NETWORK') {
+        setError('网络连接错误，请检查网络连接');
+      } else {
+        setError(err.message || '登录失败，请稍后重试');
+      }
       setDebugInfo(JSON.stringify(err, null, 2));
     } finally {
       setIsLoading(false);

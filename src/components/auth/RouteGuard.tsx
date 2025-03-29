@@ -32,6 +32,21 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children, allowedRoles }) => {
         return;
       }
 
+      // 检查token是否过期
+      const tokenTimestamp = localStorage.getItem('tokenTimestamp');
+      if (tokenTimestamp) {
+        const expiryTime = parseInt(tokenTimestamp) + 24 * 60 * 60 * 1000; // 24小时过期
+        if (Date.now() > expiryTime) {
+          console.log('Token已过期，重定向到登录页面');
+          localStorage.removeItem('token');
+          localStorage.removeItem('userRole');
+          localStorage.removeItem('userId');
+          localStorage.removeItem('username');
+          navigate('/login');
+          return;
+        }
+      }
+
       // 优先使用userProfile中的角色，其次使用localStorage中的角色
       const effectiveRole = userProfile?.role || storedRole;
       

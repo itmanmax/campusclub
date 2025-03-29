@@ -31,12 +31,21 @@ export const userService = {
       const response = await axios.post(`${BASE_URL}/user/login`, {
         username,
         password,
+      }, {
+        timeout: 60000, // 60秒超时
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': '*/*'
+        }
       });
       return response.data;
     } catch (error: any) {
       console.error('登录错误:', error);
       if (error.code === 'ERR_NETWORK') {
         throw new Error('网络连接错误，请检查API服务是否可用');
+      }
+      if (error.code === 'ECONNABORTED') {
+        throw new Error('请求超时，服务器响应时间过长');
       }
       throw error;
     }

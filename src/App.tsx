@@ -113,10 +113,22 @@ const App: React.FC = () => {
   const setupAxiosInterceptors = () => {
     console.log('设置Axios拦截器');
     
+    // 配置axios默认参数
+    axios.defaults.timeout = 60000; // 60秒超时
+    axios.defaults.headers.common['Accept'] = '*/*';
+    axios.defaults.baseURL = '/api'; // 确保baseURL与proxy配置一致
+    
     // 请求拦截器
     axios.interceptors.request.use(
       config => {
         console.log(`请求: ${config.method?.toUpperCase()} ${config.url}`);
+        
+        // 添加认证token
+        const token = localStorage.getItem('token');
+        if (token && config.headers) {
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+        
         return config;
       },
       error => {
@@ -141,18 +153,31 @@ const App: React.FC = () => {
       error => {
         console.error('响应拦截器错误:', error);
         
+        // 处理超时错误
+        if (error.code === 'ECONNABORTED') {
+          console.error('请求超时');
+          return Promise.reject(new Error('请求超时，请稍后重试'));
+        }
+        
         // 处理网络错误
         if (!error.response) {
           console.error('网络错误或服务器未响应');
+          return Promise.reject(new Error('网络连接失败，请检查API服务是否可用'));
+        }
+        
+        // 处理401未授权
+        if (error.response && error.response.status === 401) {
+          console.log('认证失败，重定向到登录页面');
+          localStorage.removeItem('token');
+          localStorage.removeItem('userRole');
+          localStorage.removeItem('userId');
+          localStorage.removeItem('username');
+          window.location.href = '/login';
         }
         
         return Promise.reject(error);
       }
     );
-    
-    // 配置axios默认参数
-    axios.defaults.timeout = 30000; // 30秒超时
-    axios.defaults.headers.common['Accept'] = '*/*';
   };
   
   // 设置全局错误处理

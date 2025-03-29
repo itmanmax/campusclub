@@ -1,19 +1,17 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
-
 module.exports = function(app) {
-  console.log('设置API代理：', API_URL);
+  console.log('设置API代理，目标地址: http://campusclub.maxtral.online');
   
   app.use(
     '/api',
     createProxyMiddleware({
-      target: API_URL,
+      target: 'http://campusclub.maxtral.online',
       changeOrigin: true,
       pathRewrite: { '^/api': '/api' },
       onProxyReq: (proxyReq, req, res) => {
         // 调试信息
-        console.log(`代理请求：${req.method} ${req.url} -> ${API_URL}${req.url}`);
+        console.log(`代理请求：${req.method} ${req.url} -> http://campusclub.maxtral.online${req.url}`);
         
         // 确保请求头中包含正确的内容类型
         if (!proxyReq.getHeader('content-type') && req.body) {
