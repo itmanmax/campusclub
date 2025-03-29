@@ -1,0 +1,12 @@
+{
+  "code": 200,
+  "message": "操作成功",
+  "data": {
+    "ongoingActivities": 2,
+    "totalUsers": 6,
+    "activeUsers": 5,
+    "totalActivities": 3,
+    "pendingClubs": 1,
+    "totalClubs": 2
+  }
+} 

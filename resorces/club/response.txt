@@ -1,0 +1,266 @@
+
+
+加入社团（可以退出重新加入）
+curl -X 'POST' \
+  'http://localhost:8080/api/clubs/1/join' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6NCwidXNlcm5hbWUiOiJ6enciLCJpYXQiOjE3NDE0MDU1NDcsImV4cCI6MTc0MjAxMDM0N30.qUIs-Au9e6gZg8yvr3tBYvXYjBQQ5UYh9559EoFZOc2HJwKgp7Ng6nIF_Ar1eZbX' \
+  -d ''
+
+  {
+    "code": 200,
+    "message": "操作成功",
+    "data": null
+  }
+
+  退出社团
+  curl -X 'POST' \
+    'http://localhost:8080/api/clubs/1/quit' \
+    -H 'accept: */*' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6NCwidXNlcm5hbWUiOiJ6enciLCJpYXQiOjE3NDE0MDU1NDcsImV4cCI6MTc0MjAxMDM0N30.qUIs-Au9e6gZg8yvr3tBYvXYjBQQ5UYh9559EoFZOc2HJwKgp7Ng6nIF_Ar1eZbX' \
+    -d ''
+
+    {
+      "code": 200,
+      "message": "操作成功",
+      "data": null
+    }
+
+    申请社团
+    curl -X 'POST' \
+  'http://localhost:8080/api/clubs/apply' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6NSwidXNlcm5hbWUiOiJ4a2oiLCJpYXQiOjE3NDE0MTIwODMsImV4cCI6MTc0MjAxNjg4M30.sZul53HOCkjnvyMmUyM7tU02Jao24gUy9NlsEXYQjQ9HaQ2sianK-YoIsCqzIfPW' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "xkj社团",
+  "description": "xkj",
+  "logoUrl": "string",
+  "category": "艺术",
+  "teacherId": "001"
+}'
+{
+  "code": 200,
+  "message": "操作成功",
+  "data": 2
+}
+
+
+签到
+curl -X 'POST' \
+  'http://localhost:8080/api/clubs/activities/1/check-in?checkInCode=955168' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6NSwidXNlcm5hbWUiOiJ4a2oiLCJpYXQiOjE3NDE0MTMzMTAsImV4cCI6MTc0MjAxODExMH0.lnQxWbLpAU8ynfD-lxpdYcb3BQhqCZMNB1xpvwhdsahZYtOznAtDffmz-2vviIGQ' \
+  -d ''
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": null
+}
+
+获取已经加入社团列表
+curl -X 'GET' \
+  'http://localhost:8080/api/club-user/joined-clubs' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiY2x1Yl9hZG1pbiIsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJtYXgiLCJpYXQiOjE3NDE0Mzg2ODYsImV4cCI6MjM0NjIzODY4Nn0.OlbtLzl6Xn5B-FmZ2o2atWryMbxCLMvHvk3b32m9KchLphdG63pi_tuWfFm1xW_o'
+
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "clubId": 1,
+      "name": "max",
+      "description": "测试",
+      "logoUrl": "string",
+      "category": "体育",
+      "status": "active",
+      "createdAt": "2025-03-08T11:26:31",
+      "presidentId": 1,
+      "teacherId": "1",
+      "starRating": 0,
+      "teacherName": null,
+      "presidentName": null
+    }
+  ]
+}
+
+获取已经加入社团活动列表
+curl -X 'GET' \
+  'http://localhost:8080/api/club-user/joined-activities' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiY2x1Yl9hZG1pbiIsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJtYXgiLCJpYXQiOjE3NDE0Mzg2ODYsImV4cCI6MjM0NjIzODY4Nn0.OlbtLzl6Xn5B-FmZ2o2atWryMbxCLMvHvk3b32m9KchLphdG63pi_tuWfFm1xW_o'
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "activityId": 1,
+      "clubId": 1,
+      "title": "2024年春季篮球联赛",
+      "type": "比赛",
+      "startTime": "2025-03-10T04:17:02",
+      "endTime": "2025-03-20T04:17:02",
+      "location": "大学体育馆",
+      "maxParticipants": 100,
+      "status": "approved",
+      "creditPoints": 1,
+      "coverImage": "string",
+      "currentParticipants": null,
+      "isUserParticipated": null,
+      "clubName": null
+    }
+  ]
+}
+
+获取所有社团列表
+curl -X 'GET' \
+  'http://localhost:8080/api/club-user/all-clubs' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6NCwidXNlcm5hbWUiOiJ6enciLCJpYXQiOjE3NDE0NDIwMjYsImV4cCI6MjM0NjI0MjAyNn0.Yy4fnnZ3Y2IU_6Z8Jr_ae7oxwrQ4990z9RzbzDQJ_Gy6QmYi-QWGANsBFZ2COg6L'
+
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "clubId": 1,
+      "name": "max",
+      "description": "测试",
+      "logoUrl": "https://bucket.maxtral.fun/2025/03/08/67cc42f894850.jpg",
+      "category": "体育",
+      "status": "active",
+      "createdAt": "2025-03-08T11:26:31",
+      "presidentId": 1,
+      "teacherId": "1",
+      "starRating": 0,
+      "presidentName": "张三",
+      "teacherName": "张老师"
+    },
+    {
+      "clubId": 2,
+      "name": "xkj社团",
+      "description": "xkj",
+      "logoUrl": "https://bucket.maxtral.fun/2025/03/08/67cc42f894850.jpg",
+      "category": "艺术",
+      "status": "active",
+      "createdAt": "2025-03-08T13:35:24",
+      "presidentId": 5,
+      "teacherId": "1",
+      "starRating": 0,
+      "presidentName": "xkj",
+      "teacherName": "张老师"
+    }
+  ]
+}
+
+获取具体社团
+curl -X 'GET' \
+  'http://localhost:8080/api/club-user/1' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6NCwidXNlcm5hbWUiOiJ6enciLCJpYXQiOjE3NDE0NDIwMjYsImV4cCI6MjM0NjI0MjAyNn0.Yy4fnnZ3Y2IU_6Z8Jr_ae7oxwrQ4990z9RzbzDQJ_Gy6QmYi-QWGANsBFZ2COg6L'
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": {
+    "clubId": 1,
+    "name": "max",
+    "description": "测试",
+    "logoUrl": "https://bucket.maxtral.fun/2025/03/08/67cc42f894850.jpg",
+    "category": "体育",
+    "status": "active",
+    "createdAt": "2025-03-08T11:26:31",
+    "presidentId": 1,
+    "teacherId": "1",
+    "starRating": 0,
+    "presidentName": "张三",
+    "teacherName": "张老师"
+  }
+}
+
+获取我创建的社团列表
+curl -X 'GET' \
+  'http://localhost:8080/api/club-user/my-created-clubs' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6NCwidXNlcm5hbWUiOiJ6enciLCJpYXQiOjE3NDE0NDIwMjYsImV4cCI6MjM0NjI0MjAyNn0.Yy4fnnZ3Y2IU_6Z8Jr_ae7oxwrQ4990z9RzbzDQJ_Gy6QmYi-QWGANsBFZ2COg6L'
+  {
+  "code": 500,
+  "message": "系统错误：您还没有创建过社团",
+  "data": null
+}
+{
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "clubId": 1,
+      "name": "max",
+      "description": "测试",
+      "logoUrl": "https://bucket.maxtral.fun/2025/03/08/67cc42f894850.jpg",
+      "category": "体育",
+      "status": "active",
+      "createdAt": "2025-03-08T11:26:31",
+      "presidentId": 1,
+      "teacherId": "1",
+      "starRating": 0,
+      "teacherName": "张三",
+      "presidentName": "张三"
+    }
+  ]
+}
+
+获取我参加的活动列表
+curl -X 'GET' \
+  'http://localhost:8080/api/club-user/joined-activities' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6NCwidXNlcm5hbWUiOiJ6enciLCJpYXQiOjE3NDE0NDY3MjgsImV4cCI6MjM0NjI0NjcyOH0.qwvPIIqPaK1jvEcb5JsEOeEZgXH5wxvuzoqpGjbJEylhcBUAxUw-kLMJ1NP1dH1Q'
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "activityId": 1,
+      "clubId": 1,
+      "clubName": "max",
+      "title": "2024年春季篮球联赛",
+      "type": "比赛",
+      "startTime": "2025-03-10T04:17:02",
+      "endTime": "2025-03-20T04:17:02",
+      "location": "大学体育馆",
+      "maxParticipants": 100,
+      "currentParticipants": 2,
+      "creditPoints": 1,
+      "coverImage": "https://bucket.maxtral.fun/2025/03/08/67cc431b1c5ca.jpg",
+      "status": "approved",
+      "checkInCode": "955168",
+      "checkInCodeExpire": "2025-03-08T14:31:32",
+      "description": null,
+      "remark": "审核通过",
+      "createdAt": null,
+      "updatedAt": null,
+      "isUserParticipated": null
+    },
+    {
+      "activityId": 2,
+      "clubId": 1,
+      "clubName": "max",
+      "title": "2025年春季篮球联赛",
+      "type": "比赛",
+      "startTime": "2025-03-12T05:16:13",
+      "endTime": "2025-03-29T05:16:13",
+      "location": "大学体育馆",
+      "maxParticipants": 100,
+      "currentParticipants": 1,
+      "creditPoints": 1,
+      "coverImage": "https://bucket.maxtral.fun/2025/03/08/67cc431b1c5ca.jpg",
+      "status": "approved",
+      "checkInCode": null,
+      "checkInCodeExpire": null,
+      "description": null,
+      "remark": "审核通过",
+      "createdAt": null,
+      "updatedAt": null,
+      "isUserParticipated": null
+    }
+  ]
+}

@@ -1,0 +1,474 @@
+
+社团审核
+curl -X 'POST' \
+  'http://localhost:8080/api/admin/system/clubs/1/review?status=active&comment=%E5%AE%A1%E6%A0%B8%E9%80%9A%E8%BF%87%EF%BC%81' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic2Nob29sX2FkbWluIiwidXNlcklkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzQxNDA0NDc0LCJleHAiOjE3NDIwMDkyNzR9.dPLcXnNCQ6_HqGWGnIYb0OtLcj6SFgmys1SEmS7GMSkwTsnNRgAIKMHtHHOrfMO-' \
+  -d ''
+
+  {
+    "code": 200,
+    "message": "操作成功",
+    "data": null
+  }
+
+  查看待审核社团
+  curl -X 'GET' \
+  'http://localhost:8080/api/admin/system/clubs/pending' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic2Nob29sX2FkbWluIiwidXNlcklkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzQxNDA3NzYyLCJleHAiOjE3NDIwMTI1NjJ9.DDqlmkg--DKshBaZEOhLJPuXoj2dKd0Lq-tKwCl_jz-CFioHYFbDG1SnFarEOFU0'
+{
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "clubId": 2,
+      "name": "xkj社团",
+      "description": "xkj",
+      "logoUrl": "string",
+      "category": "艺术",
+      "status": "pending",
+      "createdAt": "2025-03-08T13:35:24",
+      "presidentId": 5,
+      "teacherId": "1",
+      "starRating": 0,
+      "presidentName": "xkj",
+      "teacherName": "张老师"
+    }
+  ]
+}
+  查看待审核活动
+curl -X 'GET' \
+  'http://localhost:8080/api/admin/system/clubs/pending' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic2Nob29sX2FkbWluIiwidXNlcklkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzQxNDA3NzYyLCJleHAiOjE3NDIwMTI1NjJ9.DDqlmkg--DKshBaZEOhLJPuXoj2dKd0Lq-tKwCl_jz-CFioHYFbDG1SnFarEOFU0'
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "activityId": 1,
+      "clubId": 1,
+      "title": "2024年春季篮球联赛",
+      "type": "比赛",
+      "startTime": "2025-03-10T04:17:02",
+      "endTime": "2025-03-20T04:17:02",
+      "location": "大学体育馆",
+      "maxParticipants": 100,
+      "status": "draft",
+      "creditPoints": 1,
+      "coverImage": "string",
+      "currentParticipants": 0,
+      "isUserParticipated": null,
+      "clubName": "max"
+    }
+  ]
+}
+
+  审核活动
+curl -X 'POST' \
+  'http://localhost:8080/api/admin/system/activities/1/review?status=approved&comment=%E5%AE%A1%E6%A0%B8%E9%80%9A%E8%BF%87' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic2Nob29sX2FkbWluIiwidXNlcklkIjoyLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzQxNDA3NzYyLCJleHAiOjE3NDIwMTI1NjJ9.DDqlmkg--DKshBaZEOhLJPuXoj2dKd0Lq-tKwCl_jz-CFioHYFbDG1SnFarEOFU0' \
+  -d ''
+
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": null
+}
+
+
+查看社团统计
+curl -X 'GET' \
+  'http://localhost:8080/api/admin/system/statistics' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6NSwidXNlcm5hbWUiOiJ4a2oiLCJpYXQiOjE3NDE0MTMzMTAsImV4cCI6MTc0MjAxODExMH0.lnQxWbLpAU8ynfD-lxpdYcb3BQhqCZMNB1xpvwhdsahZYtOznAtDffmz-2vviIGQ'
+  curl -X 'GET' \
+  'http://localhost:8080/api/admin/system/statistics' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6NSwidXNlcm5hbWUiOiJ4a2oiLCJpYXQiOjE3NDE0MTMzMTAsImV4cCI6MTc0MjAxODExMH0.lnQxWbLpAU8ynfD-lxpdYcb3BQhqCZMNB1xpvwhdsahZYtOznAtDffmz-2vviIGQ'
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": {
+    "ongoingActivities": 0,
+    "totalUsers": 6,
+    "activeUsers": 6,
+    "totalActivities": 3,
+    "pendingClubs": 1,
+    "totalClubs": 2
+  }
+}
+
+
+ 
+curl -X 'GET' \
+  'http://localhost:8080/api/admin/system/logs' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRV9TQ0hPT0xfQURNSU4iLCJ1c2VySWQiOjIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3NDE5NDE1MjMsImV4cCI6MjM0Njc0MTUyM30._YVYNVSxpwxnWRAQ9iTrzI68W24tgJixjQ0lfDGYk8n2_jfb92AHDhhmYuKJ69dV'
+
+{
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "log_id": 14655,
+      "method": "org.yesyes.CampusClubSys.controller.ClubUserController.getAllClubs()",
+      "user_id": 5,
+      "ip": "127.0.0.1",
+      "created_at": "2025-03-14T12:09:18",
+      "params": "[]",
+      "operation": "获取全部社团列表",
+      "username": "xkj",
+      "status": 1
+    },
+    {
+      "log_id": 14654,
+      "method": "org.yesyes.CampusClubSys.controller.ClubUserController.getJoinedActivities()",
+      "user_id": 5,
+      "ip": "127.0.0.1",
+      "created_at": "2025-03-14T12:09:18",
+      "params": "[]",
+      "operation": "获取用户已参加的活动",
+      "username": "xkj",
+      "status": 1
+    },
+    {
+      "log_id": 14653,
+      "method": "org.yesyes.CampusClubSys.controller.ClubUserController.getJoinedClubs()",
+      "user_id": 5,
+      "ip": "127.0.0.1",
+      "created_at": "2025-03-14T12:09:18",
+      "params": "[]",
+      "operation": "获取用户已加入的社团",
+      "username": "xkj",
+      "status": 1
+    },
+    {
+      "log_id": 14652,
+      "method": "org.yesyes.CampusClubSys.controller.ClubUserController.getAllClubs()",
+      "user_id": 5,
+      "ip": "127.0.0.1",
+      "created_at": "2025-03-14T12:09:18",
+      "params": "[]",
+      "operation": "获取全部社团列表",
+      "username": "xkj",
+      "status": 1
+    },
+    {
+      "log_id": 14651,
+      "method": "org.yesyes.CampusClubSys.controller.ClubUserController.getJoinedClubs()",
+      "user_id": 5,
+      "ip": "127.0.0.1",
+      "created_at": "2025-03-14T12:09:17",
+      "params": "[]",
+      "operation": "获取用户已加入的社团",
+      "username": "xkj",
+      "status": 1
+    },
+    {
+      "log_id": 14650,
+      "method": "org.yesyes.CampusClubSys.controller.ClubUserController.getJoinedClubs()",
+      "user_id": 5,
+      "ip": "127.0.0.1",
+      "created_at": "2025-03-14T12:09:17",
+      "params": "[]",
+      "operation": "获取用户已加入的社团",
+      "username": "xkj",
+      "status": 1
+    },
+    {
+      "log_id": 14649,
+      "method": "org.yesyes.CampusClubSys.controller.ClubUserController.getClubDetail()",
+      "user_id": 5,
+      "ip": "127.0.0.1",
+      "created_at": "2025-03-14T12:09:17",
+      "params": "[2]",
+      "operation": "获取具体社团信息",
+      "username": "xkj",
+      "status": 1
+    },
+    {
+      "log_id": 14648,
+      "method": "org.yesyes.CampusClubSys.controller.ClubUserController.getClubDetail()",
+      "user_id": 5,
+      "ip": "127.0.0.1",
+      "created_at": "2025-03-14T12:09:17",
+      "params": "[2]",
+      "operation": "获取具体社团信息",
+      "username": "xkj",
+      "status": 1
+    },
+    {
+      "log_id": 14647,
+      "method": "org.yesyes.CampusClubSys.controller.ClubUserController.getJoinedClubs()",
+      "user_id": 5,
+      "ip": "127.0.0.1",
+      "created_at": "2025-03-14T12:09:16",
+      "params": "[]",
+      "operation": "获取用户已加入的社团",
+      "username": "xkj",
+      "status": 1
+    },
+    {
+      "log_id": 14646,
+      "method": "org.yesyes.CampusClubSys.controller.ClubUserController.getJoinedActivities()",
+      "user_id": 5,
+      "ip": "127.0.0.1",
+      "created_at": "2025-03-14T12:09:16",
+      "params": "[]",
+      "operation": "获取用户已参加的活动",
+      "username": "xkj",
+      "status": 1
+    },
+    {
+      "log_id": 14645,
+      "method": "org.yesyes.CampusClubSys.controller.ClubUserController.getAllClubs()",
+      "user_id": 5,
+      "ip": "127.0.0.1",
+      "created_at": "2025-03-14T12:09:16",
+      "params": "[]",
+      "operation": "获取全部社团列表",
+      "username": "xkj",
+      "status": 1
+    },
+    {
+      "log_id": 14644,
+      "method": "org.yesyes.CampusClubSys.controller.ClubUserController.getJoinedClubs()",
+      "user_id": 5,
+      "ip": "127.0.0.1",
+      "created_at": "2025-03-14T12:09:16",
+      "params": "[]",
+      "operation": "获取用户已加入的社团",
+      "username": "xkj",
+      "status": 1
+    },
+    {
+      "log_id": 14643,
+      "method": "org.yesyes.CampusClubSys.controller.ClubUserController.getJoinedActivities()",
+      "user_id": 5,
+      "ip": "127.0.0.1",
+      "created_at": "2025-03-14T12:09:16",
+      "params": "[]",
+      "operation": "获取用户已参加的活动",
+      "username": "xkj",
+      "status": 1
+    },
+    {
+      "log_id": 14642,
+      "method": "org.yesyes.CampusClubSys.controller.ClubUserController.getAllClubs()",
+      "user_id": 5,
+      "ip": "127.0.0.1",
+      "created_at": "2025-03-14T12:09:16",
+      "params": "[]",
+      "operation": "获取全部社团列表",
+      "username": "xkj",
+      "status": 1
+    }
+  ]
+}
+
+
+curl -X 'GET' \
+  'http://localhost:8080/api/admin/system/users' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRV9TQ0hPT0xfQURNSU4iLCJ1c2VySWQiOjIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3NDE5NDQ3NTMsImV4cCI6MjM0Njc0NDc1M30.vZgiobTp_4G9wAfktQ7W2p6x2vzrTc2SBjYMJzS5YpWxLUMCCpLx40yFJRSjdJQc'
+
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "userId": 1,
+      "username": "max",
+      "password": null,
+      "realName": "张三",
+      "email": "1799572420@qq.com",
+      "phone": "13800138000",
+      "gender": "male",
+      "studentId": "220012",
+      "teacherId": "",
+      "department": "计算机科学与技术学院",
+      "className": "计科2101",
+      "role": "club_admin",
+      "status": "active",
+      "birthdate": null,
+      "avatarUrl": "https://bucket.maxtral.fun/2025/03/08/67cc4090016c3.jpg",
+      "createdAt": "2025-03-07T22:55:27",
+      "lastLogin": "2025-03-14T16:42:00",
+      "emailVerified": false,
+      "phoneVerified": false,
+      "twoFactorSecret": null,
+      "wechatOpenid": null,
+      "qqOpenid": null,
+      "token": null
+    },
+    {
+      "userId": 2,
+      "username": "admin",
+      "password": null,
+      "realName": "系统管理员",
+      "email": "admin@campus.com",
+      "phone": null,
+      "gender": null,
+      "studentId": null,
+      "teacherId": null,
+      "department": null,
+      "className": null,
+      "role": "school_admin",
+      "status": "active",
+      "birthdate": null,
+      "avatarUrl": "https://bucket.maxtral.fun/2025/03/08/67cc4090016c3.jpg",
+      "createdAt": "2025-03-08T10:28:44",
+      "lastLogin": "2025-03-14T17:32:33",
+      "emailVerified": true,
+      "phoneVerified": false,
+      "twoFactorSecret": null,
+      "wechatOpenid": null,
+      "qqOpenid": null,
+      "token": null
+    },
+    {
+      "userId": 3,
+      "username": "zhang",
+      "password": null,
+      "realName": "张老师",
+      "email": "2577870094@qq.com",
+      "phone": "232323232",
+      "gender": "male",
+      "studentId": null,
+      "teacherId": "001",
+      "department": null,
+      "className": null,
+      "role": "teacher",
+      "status": "active",
+      "birthdate": null,
+      "avatarUrl": "https://bucket.maxtral.fun/2025/03/08/67cc4090016c3.jpg",
+      "createdAt": "2025-03-08T10:52:58",
+      "lastLogin": null,
+      "emailVerified": false,
+      "phoneVerified": false,
+      "twoFactorSecret": null,
+      "wechatOpenid": null,
+      "qqOpenid": null,
+      "token": null
+    },
+    {
+      "userId": 4,
+      "username": "zzw",
+      "password": null,
+      "realName": "zzw",
+      "email": "test1@maxtr.cn",
+      "phone": "2323232",
+      "gender": "male",
+      "studentId": "22002",
+      "teacherId": "null",
+      "department": "计算机科学与技术学院",
+      "className": "计科2101",
+      "role": "student",
+      "status": "active",
+      "birthdate": null,
+      "avatarUrl": "https://bucket.maxtral.fun/2025/03/08/67cc4090016c3.jpg",
+      "createdAt": "2025-03-08T11:41:35",
+      "lastLogin": "2025-03-08T23:51:14",
+      "emailVerified": true,
+      "phoneVerified": false,
+      "twoFactorSecret": null,
+      "wechatOpenid": null,
+      "qqOpenid": null,
+      "token": null
+    },
+    {
+      "userId": 5,
+      "username": "xkj",
+      "password": null,
+      "realName": "xkj",
+      "email": "test2@maxtr.cn",
+      "phone": "121232",
+      "gender": "male",
+      "studentId": "22003",
+      "teacherId": null,
+      "department": "计算机科学与技术学院",
+      "className": "计科2101",
+      "role": "student",
+      "status": "active",
+      "birthdate": null,
+      "avatarUrl": "https://bucket.maxtral.fun/2025/03/08/67cc4090016c3.jpg",
+      "createdAt": "2025-03-08T13:33:53",
+      "lastLogin": "2025-03-14T12:09:12",
+      "emailVerified": false,
+      "phoneVerified": false,
+      "twoFactorSecret": null,
+      "wechatOpenid": null,
+      "qqOpenid": null,
+      "token": null
+    },
+    {
+      "userId": 6,
+      "username": "wjj",
+      "password": null,
+      "realName": "wjj",
+      "email": "test5@maxtr.cn",
+      "phone": "222233",
+      "gender": "male",
+      "studentId": "22004",
+      "teacherId": null,
+      "department": "计算机科学与技术学院",
+      "className": "004",
+      "role": "student",
+      "status": "active",
+      "birthdate": null,
+      "avatarUrl": "https://bucket.maxtral.fun/2025/03/08/67cc4090016c3.jpg",
+      "createdAt": "2025-03-08T17:14:44",
+      "lastLogin": "2025-03-08T17:21:47",
+      "emailVerified": false,
+      "phoneVerified": false,
+      "twoFactorSecret": null,
+      "wechatOpenid": null,
+      "qqOpenid": null,
+      "token": null
+    }
+  ]
+}
+
+
+curl -X 'GET' \
+  'http://localhost:8080/api/club-user/all-clubs' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRV9TQ0hPT0xfQURNSU4iLCJ1c2VySWQiOjIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3NDE5NDQ3NTMsImV4cCI6MjM0Njc0NDc1M30.vZgiobTp_4G9wAfktQ7W2p6x2vzrTc2SBjYMJzS5YpWxLUMCCpLx40yFJRSjdJQc'
+
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "clubId": 1,
+      "name": "max",
+      "description": "测试",
+      "logoUrl": "https://bucket.maxtral.fun/2025/03/08/67cc42f894850.jpg",
+      "category": "体育",
+      "status": "active",
+      "createdAt": "2025-03-08T11:26:31",
+      "presidentId": 1,
+      "teacherId": "1",
+      "starRating": 0,
+      "teacherName": "张老师",
+      "presidentName": "张三"
+    },
+    {
+      "clubId": 2,
+      "name": "xkj社团",
+      "description": "xkj",
+      "logoUrl": "https://bucket.maxtral.fun/2025/03/08/67cc42f894850.jpg",
+      "category": "艺术",
+      "status": "active",
+      "createdAt": "2025-03-08T13:35:24",
+      "presidentId": 5,
+      "teacherId": "1",
+      "starRating": 0,
+      "teacherName": "张老师",
+      "presidentName": "xkj"
+    }
+  ]
+}

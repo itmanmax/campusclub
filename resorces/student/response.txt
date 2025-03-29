@@ -1,0 +1,254 @@
+用户登录
+curl -X 'POST' \
+  'http://localhost:8080/api/user/login' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "username": "max",
+  "password": "123456"
+}'
+{
+  "code": 200,
+  "message": "操作成功",
+  "data": {
+    "token": "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJtYXgiLCJpYXQiOjE3NDE0MjM5NzgsImV4cCI6MjM0NjIyMzk3OH0.LCac6P9NvVIZ_JGal0h4-MWQj2fPdZC_kVgXzk-jC2yQp86bGKos99t1yo71PKsY",
+    "userId": 1,
+    "username": "max",
+    "realName": "张三",
+    "email": "1799572420@qq.com",
+    "phone": "13800138000",
+    "gender": "male",
+    "studentId": "220012",
+    "teacherId": "",
+    "department": "计算机科学与技术学院",
+    "className": "计科2101",
+    "role": "student",
+    "status": "active",
+    "avatarUrl": null,
+    "emailVerified": false,
+    "phoneVerified": false
+  }
+}
+
+
+用户发送验证码
+curl -X 'POST' \
+  'http://localhost:8080/api/user/send-verify-code?email=test1%40maxtr.cn' \
+  -H 'accept: */*' \
+  -d ''
+
+{
+  "code": 200,
+  "message": "操作成功",
+  "data": null
+}
+
+ 用户注册
+curl -X 'POST' \
+  'http://localhost:8080/api/user/register' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "username": "zzw",
+  "password": "123456",
+  "realName": "zzw",
+  "email": "test1@maxtr.cn",
+  "verifyCode": "182768",
+  "gender": "male",
+  "phone": "2323232",
+  "studentId": "22002",
+  "teacherId": "T2021001",
+  "department": "计算机科学与技术学院",
+  "className": "计科2101",
+  "role": "student"
+}'
+
+
+{
+  "code": 200,
+  "message": "操作成功",
+  "data": null
+}
+
+
+获取用户的信息
+curl -X 'GET' \
+  'http://localhost:8080/api/user/current' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJtYXgiLCJpYXQiOjE3NDE0MDM3MTksImV4cCI6MTc0MjAwODUxOX0.WsZHTChKqdoQDw29fIS1lF1WYX5qfD7jQ5XI_ITyVqtXE8BUkJKYZVFpv-Ijvixv'
+
+
+  {
+    "code": 200,
+    "message": "操作成功",
+    "data": {
+      "id": 1,
+      "username": "max",
+      "role": "student",
+      "realName": "张三",
+      "gender": "male",
+      "birthdate": null,
+      "phone": "13800138000",
+      "email": "1799572420@qq.com",
+      "avatarUrl": null,
+      "studentId": "220012",
+      "teacherId": "",
+      "department": "计算机科学与技术学院",
+      "className": "计科2101",
+      "status": "active",
+      "createdAt": "2025-03-07T22:55:27",
+      "lastLogin": "2025-03-08T11:15:19",
+      "emailVerified": false,
+      "phoneVerified": false,
+      "twoFactorSecret": null,
+      "wechatOpenid": null,
+      "qqOpenid": null,
+      "token": null
+    }
+  }
+
+用户验证验证码
+  curl -X 'POST' \
+    'http://localhost:8080/api/user/verify-email' \
+    -H 'accept: */*' \
+    -H 'Content-Type: application/json' \
+    -d '{
+    "email": "test1@maxtr.cn",
+    "verifyCode": "839054"
+  }'
+
+  {
+    "code": 200,
+    "message": "操作成功",
+    "data": null
+  }
+
+  获取全部社团活动
+  curl -X 'GET' \
+  'http://localhost:8080/api/clubs/activities' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6NSwidXNlcm5hbWUiOiJ4a2oiLCJpYXQiOjE3NDE0MTMzMTAsImV4cCI6MTc0MjAxODExMH0.lnQxWbLpAU8ynfD-lxpdYcb3BQhqCZMNB1xpvwhdsahZYtOznAtDffmz-2vviIGQ'
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "activityId": 2,
+      "clubId": 1,
+      "title": "2025年春季篮球联赛",
+      "type": "比赛",
+      "startTime": "2025-03-12T05:16:13",
+      "endTime": "2025-03-29T05:16:13",
+      "location": "大学体育馆",
+      "maxParticipants": 100,
+      "status": "approved",
+      "creditPoints": 1,
+      "coverImage": "string",
+      "currentParticipants": null,
+      "clubName": null,
+      "isUserParticipated": null
+    },
+    {
+      "activityId": 1,
+      "clubId": 1,
+      "title": "2024年春季篮球联赛",
+      "type": "比赛",
+      "startTime": "2025-03-10T04:17:02",
+      "endTime": "2025-03-20T04:17:02",
+      "location": "大学体育馆",
+      "maxParticipants": 100,
+      "status": "approved",
+      "creditPoints": 1,
+      "coverImage": "string",
+      "currentParticipants": null,
+      "clubName": null,
+      "isUserParticipated": null
+    }
+  ]
+}
+
+
+获取具体社团活动
+curl -X 'GET' \
+  'http://localhost:8080/api/clubs/activities/1' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6NSwidXNlcm5hbWUiOiJ4a2oiLCJpYXQiOjE3NDE0MTMzMTAsImV4cCI6MTc0MjAxODExMH0.lnQxWbLpAU8ynfD-lxpdYcb3BQhqCZMNB1xpvwhdsahZYtOznAtDffmz-2vviIGQ'
+
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": {
+    "activityId": 1,
+    "clubId": 1,
+    "title": "2024年春季篮球联赛",
+    "type": "比赛",
+    "startTime": "2025-03-10T04:17:02",
+    "endTime": "2025-03-20T04:17:02",
+    "location": "大学体育馆",
+    "maxParticipants": 100,
+    "status": "approved",
+    "creditPoints": 1,
+    "coverImage": "string",
+    "currentParticipants": 0,
+    "clubName": "max",
+    "isUserParticipated": null
+  }
+}
+
+
+报名社团活动
+curl -X 'POST' \
+  'http://localhost:8080/api/clubs/activities/1/sign-up' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6NSwidXNlcm5hbWUiOiJ4a2oiLCJpYXQiOjE3NDE0MTMzMTAsImV4cCI6MTc0MjAxODExMH0.lnQxWbLpAU8ynfD-lxpdYcb3BQhqCZMNB1xpvwhdsahZYtOznAtDffmz-2vviIGQ' \
+  -d ''
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": null
+}
+
+
+取消报名社团活动
+curl -X 'DELETE' \
+  'http://localhost:8080/api/clubs/activities/1/sign-up' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6NSwidXNlcm5hbWUiOiJ4a2oiLCJpYXQiOjE3NDE0MTMzMTAsImV4cCI6MTc0MjAxODExMH0.lnQxWbLpAU8ynfD-lxpdYcb3BQhqCZMNB1xpvwhdsahZYtOznAtDffmz-2vviIGQ'
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": null
+}
+
+
+
+curl -X 'PUT' \
+  'http://localhost:8080/api/user/profile' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRV9DTFVCX0FETUlOIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6Im1heCIsImlhdCI6MTc0MTk1MDIxMCwiZXhwIjoyMzQ2NzUwMjEwfQ.kS4pVCkwBkEnvKjIEt1qBVq53bMWpMRZ7SNRpZGDAroasSZKKPxSjlLH-r-opLMJ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "realName": "张贺楠",
+  "gender": "male",
+  "studentId": "22111303163",
+  "department": "217部门",
+  "className": "21701",
+  "birthdate": "2000-11-29T00:00:00",
+  "avatarUrl": "https://bucket.maxtral.fun/2025/03/08/67cc4090016c3.jpg"
+}'
+{
+  "code": 200,
+  "message": "操作成功",
+  "data": null
+}
+
+curl -X 'PUT' \
+  'http://localhost:8080/api/user/password?oldPassword=123456&newPassword=12345678' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRV9DTFVCX0FETUlOIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6Im1heCIsImlhdCI6MTc0MTk1MDIxMCwiZXhwIjoyMzQ2NzUwMjEwfQ.kS4pVCkwBkEnvKjIEt1qBVq53bMWpMRZ7SNRpZGDAroasSZKKPxSjlLH-r-opLMJ'
+
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": null
+}

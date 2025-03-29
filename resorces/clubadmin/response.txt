@@ -1,0 +1,399 @@
+社团申请
+curl -X 'POST' \
+  'http://localhost:8080/api/clubs/apply' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJtYXgiLCJpYXQiOjE3NDE0MDM3MTksImV4cCI6MTc0MjAwODUxOX0.WsZHTChKqdoQDw29fIS1lF1WYX5qfD7jQ5XI_ITyVqtXE8BUkJKYZVFpv-Ijvixv' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "max",
+  "description": "测试",
+  "logoUrl": "string",
+  "category": "体育",
+  "teacherId": "001"
+}'
+
+{
+  "code": 200,
+  "message": "操作成功",
+  "data": 1
+}
+
+获取社团信息
+ curl -X 'GET' \
+  'http://localhost:8080/api/admin/club/info' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRV9DTFVCX0FETUlOIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6Im1heCIsImlhdCI6MTc0MTk0NTYyMiwiZXhwIjoyMzQ2NzQ1NjIyfQ.RUB4uL6OPZrbx9I8xSUuhewBWjK3oXRuyHu7E8an-y_2-9fc78Td6-KoS4KXJda7'
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": {
+    "clubId": 1,
+    "name": "max",
+    "description": "测试",
+    "logoUrl": "https://bucket.maxtral.fun/2025/03/08/67cc42f894850.jpg",
+    "category": "体育",
+    "status": "active",
+    "createdAt": "2025-03-08T11:26:31",
+    "presidentId": 1,
+    "teacherId": "1",
+    "starRating": 0,
+    "teacherName": "张老师",
+    "presidentName": "张三"
+  }
+}
+
+curl -X 'PUT' \
+  'http://localhost:8080/api/admin/club' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRV9DTFVCX0FETUlOIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6Im1heCIsImlhdCI6MTc0MTk0NTYyMiwiZXhwIjoyMzQ2NzQ1NjIyfQ.RUB4uL6OPZrbx9I8xSUuhewBWjK3oXRuyHu7E8an-y_2-9fc78Td6-KoS4KXJda7' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "clubId": 1,
+    "name": "max",
+    "description": "max自己的社团",
+    "logoUrl": "https://bucket.maxtral.fun/2025/03/08/67cc42f894850.jpg",
+    "category": "体育",
+    "status": "active",
+    "createdAt": "2025-03-08T11:26:31",
+    "presidentId": 1,
+    "teacherId": "1",
+    "starRating": 0,
+    "teacherName": "张老师",
+    "presidentName": "张三"
+}'
+
+{
+  "code": 200,
+  "message": "操作成功",
+  "data": null
+}
+
+ 
+ 
+ 查看社团成员
+curl -X 'GET' \
+  'http://localhost:8080/api/admin/club/members' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJtYXgiLCJpYXQiOjE3NDE0MTI1NDMsImV4cCI6MTc0MjAxNzM0M30.2j2qzdPMlH4u1Rk4BhQT0ivFA5u3QY9ERo3p-rDhpK3vKPxgPiBCukOSFRk92YZM'
+
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "id": 1,
+      "username": "max",
+      "role": "student",
+      "realName": "张三",
+      "gender": "male",
+      "birthdate": null,
+      "phone": "13800138000",
+      "email": "1799572420@qq.com",
+      "avatarUrl": null,
+      "studentId": "220012",
+      "teacherId": "",
+      "department": "计算机科学与技术学院",
+      "className": "计科2101",
+      "status": "active",
+      "createdAt": "2025-03-07T22:55:27",
+      "lastLogin": "2025-03-08T13:42:23",
+      "emailVerified": false,
+      "phoneVerified": false,
+      "twoFactorSecret": null,
+      "wechatOpenid": null,
+      "qqOpenid": null,
+      "token": null
+    },
+    {
+      "id": 4,
+      "username": "zzw",
+      "role": "student",
+      "realName": "zzw",
+      "gender": "male",
+      "birthdate": null,
+      "phone": "2323232",
+      "email": "test1@maxtr.cn",
+      "avatarUrl": null,
+      "studentId": "22002",
+      "teacherId": "null",
+      "department": "计算机科学与技术学院",
+      "className": "计科2101",
+      "status": "active",
+      "createdAt": "2025-03-08T11:41:35",
+      "lastLogin": "2025-03-08T12:17:59",
+      "emailVerified": true,
+      "phoneVerified": false,
+      "twoFactorSecret": null,
+      "wechatOpenid": null,
+      "qqOpenid": null,
+      "token": null
+    }
+  ]
+}
+
+创建活动
+curl -X 'POST' \
+  'http://localhost:8080/api/admin/club/activities' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJtYXgiLCJpYXQiOjE3NDE0MDY5MTQsImV4cCI6MTc0MjAxMTcxNH0.jJWMnDCjTX8cMmvEHcE9HOnEPofJStI2PmgeEVnSW5Ez7XLTCBxp5NOb9ri4aYYd' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "title": "2024年春季篮球联赛",
+  "type": "比赛",
+  "startTime": "2025-03-10T04:17:01.707Z",
+  "endTime": "2025-03-20T04:17:01.707Z",
+  "location": "大学体育馆",
+  "maxParticipants": 100,
+  "creditPoints": 1,
+  "coverImage": "string"
+}'
+
+{
+  "code": 200,
+  "message": "操作成功",
+  "data": {
+    "activityId": 1,
+    "clubId": 1,
+    "title": "2024年春季篮球联赛",
+    "type": "比赛",
+    "startTime": "2025-03-10T04:17:02",
+    "endTime": "2025-03-20T04:17:02",
+    "location": "大学体育馆",
+    "maxParticipants": 100,
+    "status": "draft",
+    "creditPoints": 1,
+    "coverImage": "string",
+    "currentParticipants": 0,
+    "isUserParticipated": null,
+    "clubName": "max"
+  }
+}
+查看具体社团活动
+curl -X 'GET' \
+  'http://localhost:8080/api/admin/club/activities/2' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJtYXgiLCJpYXQiOjE3NDE0MTM1MTUsImV4cCI6MTc0MjAxODMxNX0.CxLjgICQHgGgZEDxbGE0nRUEJrQThGrQ9-UYbS53FDf6t1PBJPWChRcRZWCH2f4X'
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": {
+    "activityId": 2,
+    "clubId": 1,
+    "title": "2025年春季篮球联赛",
+    "type": "比赛",
+    "startTime": "2025-03-12T05:16:13",
+    "endTime": "2025-03-29T05:16:13",
+    "location": "大学体育馆",
+    "maxParticipants": 100,
+    "status": "approved",
+    "creditPoints": 1,
+    "coverImage": "string",
+    "currentParticipants": 0,
+    "clubName": "max",
+    "isUserParticipated": null
+  }
+}
+
+查看全部社团活动
+curl -X 'GET' \
+  'http://localhost:8080/api/admin/club/activities' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRV9DTFVCX0FETUlOIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6Im1heCIsImlhdCI6MTc0MTk0NTYyMiwiZXhwIjoyMzQ2NzQ1NjIyfQ.RUB4uL6OPZrbx9I8xSUuhewBWjK3oXRuyHu7E8an-y_2-9fc78Td6-KoS4KXJda7'
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "activityId": 2,
+      "clubId": 1,
+      "title": "2025年春季篮球联赛",
+      "type": "比赛",
+      "startTime": "2025-03-12T05:16:13",
+      "endTime": "2025-03-29T05:16:13",
+      "location": "大学体育馆",
+      "maxParticipants": 100,
+      "status": "approved",
+      "creditPoints": 1,
+      "coverImage": "string",
+      "currentParticipants": 0,
+      "clubName": "max",
+      "isUserParticipated": null
+    },
+    {
+      "activityId": 1,
+      "clubId": 1,
+      "title": "2024年春季篮球联赛",
+      "type": "比赛",
+      "startTime": "2025-03-10T04:17:02",
+      "endTime": "2025-03-20T04:17:02",
+      "location": "大学体育馆",
+      "maxParticipants": 100,
+      "status": "approved",
+      "creditPoints": 1,
+      "coverImage": "string",
+      "currentParticipants": 1,
+      "clubName": "max",
+      "isUserParticipated": null
+    }
+  ]
+}
+
+生成签到码
+curl -X 'POST' \
+  'http://localhost:8080/api/admin/club/activities/1/check-in-code' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoic3R1ZGVudCIsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJtYXgiLCJpYXQiOjE3NDE0MTM1MTUsImV4cCI6MTc0MjAxODMxNX0.CxLjgICQHgGgZEDxbGE0nRUEJrQThGrQ9-UYbS53FDf6t1PBJPWChRcRZWCH2f4X' \
+  -d ''
+
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": "955168"
+}
+
+获取社团申请状态
+curl -X 'GET' \
+  'http://localhost:8080/api/clubs/1/application-status' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiY2x1Yl9hZG1pbiIsInVzZXJJZCI6MSwidXNlcm5hbWUiOiJtYXgiLCJpYXQiOjE3NDE0NDMzNDUsImV4cCI6MjM0NjI0MzM0NX0.vziT4ZEtWhRZqsOsKnXK5yCIr9Ty7XegBqCzRmHlXrwSZxvM4Gmr5b_hKACv0xz8'
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": "active"
+}
+
+curl -X 'GET' \
+  'http://localhost:8080/api/admin/club/members' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRV9DTFVCX0FETUlOIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6Im1heCIsImlhdCI6MTc0MTk0NTYyMiwiZXhwIjoyMzQ2NzQ1NjIyfQ.RUB4uL6OPZrbx9I8xSUuhewBWjK3oXRuyHu7E8an-y_2-9fc78Td6-KoS4KXJda7'
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "userId": null,
+      "username": "max",
+      "password": null,
+      "realName": "张三",
+      "email": "1799572420@qq.com",
+      "phone": "13800138000",
+      "gender": "male",
+      "studentId": "220012",
+      "teacherId": "",
+      "department": "计算机科学与技术学院",
+      "className": "计科2101",
+      "role": "club_admin",
+      "status": "active",
+      "birthdate": null,
+      "avatarUrl": "https://bucket.maxtral.fun/2025/03/08/67cc4090016c3.jpg",
+      "createdAt": "2025-03-07T22:55:27",
+      "lastLogin": "2025-03-14T17:47:02",
+      "emailVerified": false,
+      "phoneVerified": false,
+      "twoFactorSecret": null,
+      "wechatOpenid": null,
+      "qqOpenid": null,
+      "token": null
+    },
+    {
+      "userId": null,
+      "username": "zzw",
+      "password": null,
+      "realName": "zzw",
+      "email": "test1@maxtr.cn",
+      "phone": "2323232",
+      "gender": "male",
+      "studentId": "22002",
+      "teacherId": "null",
+      "department": "计算机科学与技术学院",
+      "className": "计科2101",
+      "role": "student",
+      "status": "active",
+      "birthdate": null,
+      "avatarUrl": "https://bucket.maxtral.fun/2025/03/08/67cc4090016c3.jpg",
+      "createdAt": "2025-03-08T11:41:35",
+      "lastLogin": "2025-03-08T23:51:14",
+      "emailVerified": true,
+      "phoneVerified": false,
+      "twoFactorSecret": null,
+      "wechatOpenid": null,
+      "qqOpenid": null,
+      "token": null
+    }
+  ]
+}
+
+获取活动签到统计
+curl -X 'GET' \
+  'http://localhost:8080/api/admin/club/activities/1/check-in-stats' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRV9DTFVCX0FETUlOIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6Im1heCIsImlhdCI6MTc0MTk0NTYyMiwiZXhwIjoyMzQ2NzQ1NjIyfQ.RUB4uL6OPZrbx9I8xSUuhewBWjK3oXRuyHu7E8an-y_2-9fc78Td6-KoS4KXJda7'
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": {
+    "totalParticipants": 2,
+    "checkedInParticipants": 1
+  }
+}
+获取活动报名信息
+curl -X 'GET' \
+  'http://localhost:8080/api/admin/club/activities/1/participants' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRV9DTFVCX0FETUlOIiwidXNlcklkIjoxLCJ1c2VybmFtZSI6Im1heCIsImlhdCI6MTc0MTk0NTYyMiwiZXhwIjoyMzQ2NzQ1NjIyfQ.RUB4uL6OPZrbx9I8xSUuhewBWjK3oXRuyHu7E8an-y_2-9fc78Td6-KoS4KXJda7'
+  {
+  "code": 200,
+  "message": "操作成功",
+  "data": [
+    {
+      "userId": null,
+      "username": "xkj",
+      "password": null,
+      "realName": "xkj",
+      "email": "test2@maxtr.cn",
+      "phone": "121232",
+      "gender": "male",
+      "studentId": "22003",
+      "teacherId": null,
+      "department": "计算机科学与技术学院",
+      "className": "计科2101",
+      "role": "club_admin",
+      "status": "active",
+      "birthdate": null,
+      "avatarUrl": "https://bucket.maxtral.fun/2025/03/08/67cc4090016c3.jpg",
+      "createdAt": "2025-03-08T13:33:53",
+      "lastLogin": "2025-03-14T12:09:12",
+      "emailVerified": false,
+      "phoneVerified": false,
+      "twoFactorSecret": null,
+      "wechatOpenid": null,
+      "qqOpenid": null,
+      "token": null
+    },
+    {
+      "userId": null,
+      "username": "zzw",
+      "password": null,
+      "realName": "zzw",
+      "email": "test1@maxtr.cn",
+      "phone": "2323232",
+      "gender": "male",
+      "studentId": "22002",
+      "teacherId": "null",
+      "department": "计算机科学与技术学院",
+      "className": "计科2101",
+      "role": "student",
+      "status": "active",
+      "birthdate": null,
+      "avatarUrl": "https://bucket.maxtral.fun/2025/03/08/67cc4090016c3.jpg",
+      "createdAt": "2025-03-08T11:41:35",
+      "lastLogin": "2025-03-08T23:51:14",
+      "emailVerified": true,
+      "phoneVerified": false,
+      "twoFactorSecret": null,
+      "wechatOpenid": null,
+      "qqOpenid": null,
+      "token": null
+    }
+  ]
+}
