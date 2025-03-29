@@ -175,6 +175,12 @@ const App: React.FC = () => {
           window.location.href = '/login';
         }
         
+        // 处理403禁止访问
+        if (error.response && error.response.status === 403) {
+          console.log('请求被拒绝，用户可能无权访问:', error.config?.url);
+          return Promise.reject(new Error('请求被拒绝，您可能没有访问权限'));
+        }
+        
         return Promise.reject(error);
       }
     );

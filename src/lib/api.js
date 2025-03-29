@@ -54,6 +54,12 @@ api.interceptors.response.use(
         return Promise.reject(new Error('登录已过期，请重新登录'));
       }
       
+      // 处理403错误
+      if (error.response.status === 403) {
+        console.error('访问被拒绝，可能没有权限:', error.config.url);
+        return Promise.reject(new Error('访问被拒绝，您可能没有操作权限'));
+      }
+      
       // 返回服务器的错误信息
       const errorMessage = error.response.data?.message || '请求失败';
       return Promise.reject(new Error(errorMessage));

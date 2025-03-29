@@ -40,8 +40,8 @@ export default function Login({ onLogin }: LoginProps) {
     try {
       console.log('尝试登录:', form);
       
-      // 直接调用axios进行登录，绕过service层
-      const response = await axios.post('/api/user/login', {
+      // 直接调用axios进行登录，不加/api前缀(因为baseURL已设置)
+      const response = await axios.post('/user/login', {
         username: form.username,
         password: form.password
       }, {
@@ -88,6 +88,8 @@ export default function Login({ onLogin }: LoginProps) {
         setError('请求超时，服务器响应时间过长');
       } else if (err.code === 'ERR_NETWORK') {
         setError('网络连接错误，请检查网络连接');
+      } else if (err.response && err.response.status === 403) {
+        setError('访问被拒绝，请确认您的账号有权限登录，或联系管理员');
       } else {
         setError(err.message || '登录失败，请稍后重试');
       }
