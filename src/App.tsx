@@ -1,4 +1,4 @@
-import React, { useState, Component, ErrorInfo, ReactNode } from 'react';
+import React, { useState, Component, ErrorInfo, ReactNode, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import RouteGuard from './components/auth/RouteGuard';
@@ -9,6 +9,7 @@ import UnauthorizedPage from './pages/unauthorized';
 import ProfilePage from './pages/profile/index';
 import { Toaster } from 'react-hot-toast';
 import SearchResults from './pages/SearchResults';
+import axios from 'axios';
 
 // 导入各个角色的仪表盘组件
 import StudentDashboard from './components/student/dashboard';
@@ -92,6 +93,80 @@ const App: React.FC = () => {
       default:
         return '/login';
     }
+  };
+
+  useEffect(() => {
+    // 配置全局错误处理和API拦截器
+    console.log('初始化App全局配置');
+    setupAxiosInterceptors();
+    handleAppErrors();
+    
+    // 检查是否有保存的调试模式设置
+    const debugMode = localStorage.getItem('debug_mode');
+    if (debugMode === 'true') {
+      console.log('调试模式已启用');
+      window.DEBUG_MODE = true;
+    }
+  }, []);
+  
+  // 配置axios拦截器
+  const setupAxiosInterceptors = () => {
+    console.log('设置Axios拦截器');
+    
+    // 请求拦截器
+    axios.interceptors.request.use(
+      config => {
+        console.log(`请求: ${config.method?.toUpperCase()} ${config.url}`);
+        return config;
+      },
+      error => {
+        console.error('请求拦截器错误:', error);
+        return Promise.reject(error);
+      }
+    );
+    
+    // 响应拦截器
+    axios.interceptors.response.use(
+      response => {
+        console.log(`响应: ${response.config.method?.toUpperCase()} ${response.config.url} -> ${response.status}`);
+        const data = response.data;
+        
+        // 检查响应格式并统一处理
+        if (data && data.code && data.code !== 200) {
+          console.warn('API响应非200状态:', data);
+        }
+        
+        return response;
+      },
+      error => {
+        console.error('响应拦截器错误:', error);
+        
+        // 处理网络错误
+        if (!error.response) {
+          console.error('网络错误或服务器未响应');
+        }
+        
+        return Promise.reject(error);
+      }
+    );
+    
+    // 配置axios默认参数
+    axios.defaults.timeout = 30000; // 30秒超时
+    axios.defaults.headers.common['Accept'] = '*/*';
+  };
+  
+  // 设置全局错误处理
+  const handleAppErrors = () => {
+    console.log('设置全局错误处理');
+    
+    window.onerror = (message, source, lineno, colno, error) => {
+      console.error('全局错误:', { message, source, lineno, colno, error });
+      return false;
+    };
+    
+    window.addEventListener('unhandledrejection', (event) => {
+      console.error('未处理的Promise拒绝:', event.reason);
+    });
   };
 
   return (
@@ -319,3 +394,10 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+// 声明全局调试模式变量
+declare global {
+  interface Window {
+    DEBUG_MODE?: boolean;
+  }
+}
