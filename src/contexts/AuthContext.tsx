@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { UserProfile, AuthContextType } from '../hooks/useAuth';
+import { userApi } from '../lib/api';
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -21,6 +22,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
       
       try {
+        console.log('获取用户信息中...');
+        // 直接使用API模块中的方法
         const response = await axios.get('/api/user/profile', {
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -28,8 +31,26 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           }
         });
         
-        if (response.data.code === 200) {
-          const userData = response.data.data;
+        console.log('获取到的用户信息:', response.data);
+        
+        // 检查返回数据格式并处理
+        let userData;
+        
+        if (response.data && response.data.code === 200) {
+          userData = response.data.data;
+          console.log('标准格式数据处理');
+        } else if (response.data && !response.data.code) {
+          userData = response.data;
+          console.log('直接使用数据对象');
+        } else if (!response.data) {
+          console.log('未获取到有效数据');
+          setLoading(false);
+          return;
+        }
+        
+        console.log('处理后的用户数据:', userData);
+        
+        if (userData) {
           setUserProfile(userData);
           
           // 保存用户角色到本地存储
