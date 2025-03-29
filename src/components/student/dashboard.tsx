@@ -27,6 +27,7 @@ interface Activity {
 }
 
 const StudentDashboard: React.FC = () => {
+  console.log('学生仪表盘组件开始初始化', new Date().toISOString());
   const location = useLocation();
   const navigate = useNavigate();
   const [joinedClubs, setJoinedClubs] = useState<JoinedClub[]>([]);
@@ -35,6 +36,7 @@ const StudentDashboard: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    console.log('学生仪表盘useEffect开始执行', new Date().toISOString());
     fetchJoinedClubs();
     fetchActivities();
     fetchPoints();
@@ -42,6 +44,7 @@ const StudentDashboard: React.FC = () => {
 
   const fetchJoinedClubs = async () => {
     try {
+      console.log('开始获取学生仪表盘数据');
       const response = await axios.get('/api/club-user/joined-clubs', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -51,14 +54,20 @@ const StudentDashboard: React.FC = () => {
       if (response.data.code === 200) {
         setJoinedClubs(response.data.data);
       }
+      console.log('获取学生仪表盘数据成功', {
+        joinedClubs: !!response.data.data
+      });
     } catch (err) {
       console.error('获取已加入的社团列表失败:', err);
       toast.error('获取社团列表失败');
+    } finally {
+      console.log('学生仪表盘数据加载完成', new Date().toISOString());
     }
   };
 
   const fetchActivities = async () => {
     try {
+      console.log('开始获取学生仪表盘数据');
       const response = await axios.get('/api/club-user/joined-activities', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -68,14 +77,20 @@ const StudentDashboard: React.FC = () => {
       if (response.data.code === 200) {
         setActivities(response.data.data);
       }
+      console.log('获取学生仪表盘数据成功', {
+        activities: !!response.data.data
+      });
     } catch (err) {
       console.error('获取活动列表失败:', err);
       toast.error('获取活动列表失败');
+    } finally {
+      console.log('学生仪表盘数据加载完成', new Date().toISOString());
     }
   };
 
   const fetchPoints = async () => {
     try {
+      console.log('开始获取学生仪表盘数据');
       const response = await axios.get('/api/user/credit-points', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -85,8 +100,13 @@ const StudentDashboard: React.FC = () => {
       if (response.data.code === 200) {
         setMyPoints(response.data.data || 0);
       }
+      console.log('获取学生仪表盘数据成功', {
+        creditPoints: !!response.data.data
+      });
     } catch (err) {
       console.error('获取积分数据失败:', err);
+    } finally {
+      console.log('学生仪表盘数据加载完成', new Date().toISOString());
     }
   };
 
@@ -112,6 +132,8 @@ const StudentDashboard: React.FC = () => {
     const endTime = new Date(activity.endTime);
     return endTime > new Date();
   }).length;
+
+  console.log('学生仪表盘组件渲染', { isLoading });
 
   if (joinedClubs.length === 0 && activities.length === 0) {
     return (
