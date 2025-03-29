@@ -113,217 +113,217 @@ const handleApiRequest = async (req, res, targetUrl, method = 'GET', customHeade
 
 // 登录请求
 app.post('/api/user/login', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/user/login', 'POST');
+  handleApiRequest(req, res, 'http://localhost:8080/api/user/login', 'POST');
 });
 
 // 注册请求
 app.post('/api/user/register', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/user/register', 'POST');
+  handleApiRequest(req, res, 'http://localhost:8080/api/user/register', 'POST');
 });
 
 // 发送验证码请求
 app.post('/api/user/send-verify-code', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/user/send-verify-code?email=${req.query.email}`;
+  const targetUrl = `http://localhost:8080/api/user/send-verify-code?email=${req.query.email}`;
   handleApiRequest(req, res, targetUrl, 'POST');
 });
 
 // 验证邮箱验证码
 app.post('/api/user/verify-email', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/user/verify-email', 'POST');
+  handleApiRequest(req, res, 'http://localhost:8080/api/user/verify-email', 'POST');
 });
 
 // 获取当前用户信息
 app.get('/api/user/profile', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/user/profile', 'GET');
+  handleApiRequest(req, res, 'http://localhost:8080/api/user/profile', 'GET');
 });
 
 // 更新用户个人信息
 app.put('/api/user/profile', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/user/profile', 'PUT');
+  handleApiRequest(req, res, 'http://localhost:8080/api/user/profile', 'PUT');
 });
 
 // 更新用户密码
 app.put('/api/user/password', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/user/password?oldPassword=${req.query.oldPassword}&newPassword=${req.query.newPassword}`;
+  const targetUrl = `http://localhost:8080/api/user/password?oldPassword=${req.query.oldPassword}&newPassword=${req.query.newPassword}`;
   handleApiRequest(req, res, targetUrl, 'PUT');
 });
 
 // 获取所有社团活动  ---不使用！！
 app.get('/api/clubs/activities', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/clubs/activities', 'GET');
+  handleApiRequest(req, res, 'http://localhost:8080/api/clubs/activities', 'GET');
 });
 
 // 获取特定社团活动
 app.get('/api/clubs/activities/:id', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/clubs/activities/${req.params.id}`;
+  const targetUrl = `http://localhost:8080/api/clubs/activities/${req.params.id}`;
   handleApiRequest(req, res, targetUrl, 'GET');
 });
 
 // 报名社团活动
 app.post('/api/clubs/activities/:id/sign-up', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/clubs/activities/${req.params.id}/sign-up`;
+  const targetUrl = `http://localhost:8080/api/clubs/activities/${req.params.id}/sign-up`;
   handleApiRequest(req, res, targetUrl, 'POST');
 });
 
 // 取消报名社团活动
 app.delete('/api/clubs/activities/:id/sign-up', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/clubs/activities/${req.params.id}/sign-up`;
+  const targetUrl = `http://localhost:8080/api/clubs/activities/${req.params.id}/sign-up`;
   handleApiRequest(req, res, targetUrl, 'DELETE');
 });
 
 // 活动签到
 app.post('/api/clubs/activities/:id/check-in', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/clubs/activities/${req.params.id}/check-in`;
+  const targetUrl = `http://localhost:8080/api/clubs/activities/${req.params.id}/check-in`;
   handleApiRequest(req, res, targetUrl, 'POST');
 });
 
 // 获取已加入的社团列表
 app.get('/api/club-user/joined-clubs', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/club-user/joined-clubs', 'GET');
+  handleApiRequest(req, res, 'http://localhost:8080/api/club-user/joined-clubs', 'GET');
 });
 
 // 获取所有社团列表（公开API）
 app.get('/api/club-user/all-clubs', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/club-user/all-clubs', 'GET');
+  handleApiRequest(req, res, 'http://localhost:8080/api/club-user/all-clubs', 'GET');
 });
 
 // 获取社团列表
 app.get('/api/clubs', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/clubs', 'GET');
+  handleApiRequest(req, res, 'http://localhost:8080/api/clubs', 'GET');
 });
 
 // 获取社团详情
 app.get('/api/club-user/:id', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/club-user/${req.params.id}`;
+  const targetUrl = `http://localhost:8080/api/club-user/${req.params.id}`;
   handleApiRequest(req, res, targetUrl, 'GET');
 });
 
 // 获取社团管理员的社团信息
 app.get('/api/admin/club/info', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/admin/club/info', 'GET');
+  handleApiRequest(req, res, 'http://localhost:8080/api/admin/club/info', 'GET');
 });
 
 // 更新社团管理员的社团信息
 app.put('/api/admin/club', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/admin/club', 'PUT');
+  handleApiRequest(req, res, 'http://localhost:8080/api/admin/club', 'PUT');
 });
 
 // 获取社团成员列表
 app.get('/api/admin/club/members', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/admin/club/members', 'GET');
+  handleApiRequest(req, res, 'http://localhost:8080/api/admin/club/members', 'GET');
 });
 
 // 获取社团活动列表
 app.get('/api/admin/club/activities', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/admin/club/activities', 'GET');
+  handleApiRequest(req, res, 'http://localhost:8080/api/admin/club/activities', 'GET');
 });
 
 // 获取特定社团活动详情
 app.get('/api/admin/club/activities/:id', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/admin/club/activities/${req.params.id}`;
+  const targetUrl = `http://localhost:8080/api/admin/club/activities/${req.params.id}`;
   handleApiRequest(req, res, targetUrl, 'GET');
 });
 
 // 创建社团活动
 app.post('/api/admin/club/activities', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/admin/club/activities', 'POST');
+  handleApiRequest(req, res, 'http://localhost:8080/api/admin/club/activities', 'POST');
 });
 
 // 更新社团活动
 app.put('/api/admin/club/activities/:id', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/admin/club/activities/${req.params.id}`;
+  const targetUrl = `http://localhost:8080/api/admin/club/activities/${req.params.id}`;
   handleApiRequest(req, res, targetUrl, 'PUT');
 });
 
 // 取消社团活动
 app.delete('/api/admin/club/activities/:id', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/admin/club/activities/${req.params.id}`;
+  const targetUrl = `http://localhost:8080/api/admin/club/activities/${req.params.id}`;
   handleApiRequest(req, res, targetUrl, 'DELETE');
 });
 
 // 生成活动签到码
 app.post('/api/admin/club/activities/:id/check-in-code', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/admin/club/activities/${req.params.id}/check-in-code`;
+  const targetUrl = `http://localhost:8080/api/admin/club/activities/${req.params.id}/check-in-code`;
   handleApiRequest(req, res, targetUrl, 'POST');
 });
 
 // 获取活动参与者列表
 app.get('/api/admin/club/activities/:id/participants', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/admin/club/activities/${req.params.id}/participants`;
+  const targetUrl = `http://localhost:8080/api/admin/club/activities/${req.params.id}/participants`;
   handleApiRequest(req, res, targetUrl, 'GET');
 });
 
 // 获取活动签到统计
 app.get('/api/admin/club/activities/:id/check-in-stats', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/admin/club/activities/${req.params.id}/check-in-stats`;
+  const targetUrl = `http://localhost:8080/api/admin/club/activities/${req.params.id}/check-in-stats`;
   handleApiRequest(req, res, targetUrl, 'GET');
 });
 
 // 设置社团成员角色
 app.put('/api/admin/club/members/:id/role', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/admin/club/members/${req.params.id}/role`;
+  const targetUrl = `http://localhost:8080/api/admin/club/members/${req.params.id}/role`;
   handleApiRequest(req, res, targetUrl, 'PUT');
 });
 
 // 移除社团成员
 app.delete('/api/admin/club/members/:id', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/admin/club/members/${req.params.id}`;
+  const targetUrl = `http://localhost:8080/api/admin/club/members/${req.params.id}`;
   handleApiRequest(req, res, targetUrl, 'DELETE');
 });
 
 // 加入社团
 app.post('/api/clubs/:id/join', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/clubs/${req.params.id}/join`;
+  const targetUrl = `http://localhost:8080/api/clubs/${req.params.id}/join`;
   handleApiRequest(req, res, targetUrl, 'POST');
 });
 
 // 退出社团
 app.post('/api/clubs/:id/quit', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/clubs/${req.params.id}/quit`;
+  const targetUrl = `http://localhost:8080/api/clubs/${req.params.id}/quit`;
   handleApiRequest(req, res, targetUrl, 'POST');
 });
 
 // 申请创建社团
 app.post('/api/clubs/apply', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/clubs/apply', 'POST');
+  handleApiRequest(req, res, 'http://localhost:8080/api/clubs/apply', 'POST');
 });
 
 // 获取申请状态
 app.get('/api/clubs/:id/application-status', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/clubs/${req.params.id}/application-status`;
+  const targetUrl = `http://localhost:8080/api/clubs/${req.params.id}/application-status`;
   handleApiRequest(req, res, targetUrl, 'GET');
 });
 
 // 撤回申请
 app.delete('/api/clubs/:id/withdraw', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/clubs/${req.params.id}/withdraw`;
+  const targetUrl = `http://localhost:8080/api/clubs/${req.params.id}/withdraw`;
   handleApiRequest(req, res, targetUrl, 'DELETE');
 });
 
 // 获取所有社团列表（需要认证）
 app.get('/api/clubs/all', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/clubs/all', 'GET');
+  handleApiRequest(req, res, 'http://localhost:8080/api/clubs/all', 'GET');
 });
 
 // 获取待审核社团列表
 app.get('/api/admin/system/clubs/pending', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/admin/system/clubs/pending', 'GET');
+  handleApiRequest(req, res, 'http://localhost:8080/api/admin/system/clubs/pending', 'GET');
 });
 
 // 社团审核
 app.post('/api/admin/system/clubs/:id/review', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/admin/system/clubs/${req.params.id}/review?status=${req.query.status}&comment=${encodeURIComponent(req.query.comment || '')}`;
+  const targetUrl = `http://localhost:8080/api/admin/system/clubs/${req.params.id}/review?status=${req.query.status}&comment=${encodeURIComponent(req.query.comment || '')}`;
   handleApiRequest(req, res, targetUrl, 'POST');
 });
 
 // 获取待审核活动列表
 app.get('/api/admin/system/activities/pending', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/admin/system/activities/pending', 'GET');
+  handleApiRequest(req, res, 'http://localhost:8080/api/admin/system/activities/pending', 'GET');
 });
 
 // 活动审核
 app.post('/api/admin/system/activities/:id/review', (req, res) => {
-  const targetUrl = `https://campusclub.maxtral.online/api/admin/system/activities/${req.params.id}/review?status=${req.query.status}&comment=${encodeURIComponent(req.query.comment || '')}`;
+  const targetUrl = `http://localhost:8080/api/admin/system/activities/${req.params.id}/review?status=${req.query.status}&comment=${encodeURIComponent(req.query.comment || '')}`;
   handleApiRequest(req, res, targetUrl, 'POST');
 });
 
@@ -332,7 +332,7 @@ app.get('/api/admin/system/statistics', (req, res) => {
   console.log('请求系统统计数据');
   
   // 尝试从后端获取数据
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/admin/system/statistics', 'GET', {}, (err, backendResponse) => {
+  handleApiRequest(req, res, 'http://localhost:8080/api/admin/system/statistics', 'GET', {}, (err, backendResponse) => {
     // 如果后端请求成功，直接返回后端数据
     if (!err && backendResponse && backendResponse.code === 200) {
       return res.json(backendResponse);
@@ -363,7 +363,7 @@ app.get('/api/admin/system/logs', (req, res) => {
   console.log('请求系统日志数据');
   
   // 尝试从后端获取数据
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/admin/system/logs', 'GET', {}, (err, backendResponse) => {
+  handleApiRequest(req, res, 'http://localhost:8080/api/admin/system/logs', 'GET', {}, (err, backendResponse) => {
     // 如果后端请求成功，直接返回后端数据
     if (!err && backendResponse && backendResponse.code === 200) {
       return res.json(backendResponse);
@@ -542,7 +542,7 @@ app.get('/api/admin/system/users', (req, res) => {
   console.log('请求用户列表数据');
   
   // 尝试从后端获取数据
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/admin/system/users', 'GET', {}, (err, backendResponse) => {
+  handleApiRequest(req, res, 'http://localhost:8080/api/admin/system/users', 'GET', {}, (err, backendResponse) => {
     // 如果后端请求成功，直接返回后端数据
     if (!err && backendResponse && backendResponse.code === 200) {
       return res.json(backendResponse);
@@ -690,7 +690,7 @@ app.get('/api/admin/system/users', (req, res) => {
 
 // 获取用户已加入的活动
 app.get('/api/club-user/joined-activities', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/club-user/joined-activities', 'GET');
+  handleApiRequest(req, res, 'http://localhost:8080/api/club-user/joined-activities', 'GET');
 });
 
 // 获取积分排行榜
@@ -698,7 +698,7 @@ app.get('/api/club-user/points-leaderboard', (req, res) => {
   console.log('请求积分排行榜数据');
   
   // 尝试从后端获取数据
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/club-user/points-leaderboard', 'GET', {}, (err, backendResponse) => {
+  handleApiRequest(req, res, 'http://localhost:8080/api/club-user/points-leaderboard', 'GET', {}, (err, backendResponse) => {
     // 如果后端请求成功，直接返回后端数据
     if (!err && backendResponse && backendResponse.code === 200) {
       return res.json(backendResponse);
@@ -755,7 +755,7 @@ app.get('/api/club-user/activity-recommendations', (req, res) => {
   console.log('请求活动推荐数据');
   
   // 尝试从后端获取数据
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/club-user/activity-recommendations', 'GET', {}, (err, backendResponse) => {
+  handleApiRequest(req, res, 'http://localhost:8080/api/club-user/activity-recommendations', 'GET', {}, (err, backendResponse) => {
     // 如果后端请求成功，直接返回后端数据
     if (!err && backendResponse && backendResponse.code === 200) {
       return res.json(backendResponse);
@@ -816,20 +816,20 @@ app.get('/api/club-user/activity-recommendations', (req, res) => {
 
 // 获取用户积分
 app.get('/api/user/credit-points', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/user/credit-points', 'GET');
+  handleApiRequest(req, res, 'http://localhost:8080/api/user/credit-points', 'GET');
 });
 
 // 获取积分排行榜
 app.get('/api/user/credit-ranking', (req, res) => {
   const limit = req.query.limit || 10;
-  const targetUrl = `https://campusclub.maxtral.online/api/user/credit-ranking?limit=${limit}`;
+  const targetUrl = `http://localhost:8080/api/user/credit-ranking?limit=${limit}`;
   handleApiRequest(req, res, targetUrl, 'GET');
 });
 
 // 获取个性化活动推荐
 app.get('/api/activities/recommend/personal', (req, res) => {
   const limit = req.query.limit || 10;
-  const targetUrl = `https://campusclub.maxtral.online/api/activities/recommend/personal?limit=${limit}`;
+  const targetUrl = `http://localhost:8080/api/activities/recommend/personal?limit=${limit}`;
   handleApiRequest(req, res, targetUrl, 'GET');
 });
 
@@ -837,18 +837,18 @@ app.get('/api/activities/recommend/personal', (req, res) => {
 app.get('/api/activities/recommend/similar/:activityId', (req, res) => {
   const { activityId } = req.params;
   const limit = req.query.limit || 5;
-  const targetUrl = `https://campusclub.maxtral.online/api/activities/recommend/similar/${activityId}?limit=${limit}`;
+  const targetUrl = `http://localhost:8080/api/activities/recommend/similar/${activityId}?limit=${limit}`;
   handleApiRequest(req, res, targetUrl, 'GET');
 });
 
 // 获取所有活动列表
 app.get('/api/club-user/all-activities', (req, res) => {
-  handleApiRequest(req, res, 'https://campusclub.maxtral.online/api/club-user/all-activities', 'GET');
+  handleApiRequest(req, res, 'http://localhost:8080/api/club-user/all-activities', 'GET');
 });
 
 // 处理其他所有API请求
 app.use('/api', createProxyMiddleware({
-  target: 'https://campusclub.maxtral.online',
+  target: 'http://localhost:8080',
   changeOrigin: true,
   pathRewrite: { '^/api': '/api' },
   onProxyReq: (proxyReq, req, res) => {

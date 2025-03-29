@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// 修改BASE_URL为相对路径，使用vercel.json中配置的重写规则
 const BASE_URL = '/api';
 
 export interface LoginResponse {
@@ -27,41 +28,16 @@ export interface LoginResponse {
 
 export const userService = {
   login: async (username: string, password: string): Promise<LoginResponse> => {
-    try {
-      const response = await axios.post(`${BASE_URL}/user/login`, {
-        username,
-        password,
-      }, {
-        timeout: 60000, // 60秒超时
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': '*/*'
-        }
-      });
-      return response.data;
-    } catch (error: any) {
-      console.error('登录错误:', error);
-      if (error.code === 'ERR_NETWORK') {
-        throw new Error('网络连接错误，请检查API服务是否可用');
-      }
-      if (error.code === 'ECONNABORTED') {
-        throw new Error('请求超时，服务器响应时间过长');
-      }
-      throw error;
-    }
+    const response = await axios.post(`${BASE_URL}/user/login`, {
+      username,
+      password,
+    });
+    return response.data;
   },
 
   register: async (data: any) => {
-    try {
-      const response = await axios.post(`${BASE_URL}/user/register`, data);
-      return response.data;
-    } catch (error: any) {
-      console.error('注册错误:', error);
-      if (error.code === 'ERR_NETWORK') {
-        throw new Error('网络连接错误，请检查API服务是否可用');
-      }
-      throw error;
-    }
+    const response = await axios.post(`${BASE_URL}/user/register`, data);
+    return response.data;
   },
 
   sendVerifyCode: async (email: string) => {

@@ -21,17 +21,14 @@ interface Club {
 }
 
 const StudentClubsList: React.FC = () => {
-  console.log('ClubsList组件开始初始化', new Date().toISOString());
   const navigate = useNavigate()
   const [clubs, setClubs] = useState<Club[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    console.log('ClubsList useEffect开始执行', new Date().toISOString());
     const fetchClubs = async () => {
       try {
-        console.log('开始获取社团列表数据');
         setLoading(true)
         const response = await fetch("/api/club-user/all-clubs", {
           headers: {
@@ -45,10 +42,6 @@ const StudentClubsList: React.FC = () => {
 
         if (data.code === 200) {
           setClubs(data.data)
-          console.log('社团列表数据获取成功', {
-            dataLength: data.data.length,
-            firstClub: data.data.length > 0 ? data.data[0].name : null
-          });
         } else {
           setError(data.message || "获取社团列表失败")
           toast.error(data.message || "获取社团列表失败")
@@ -59,15 +52,10 @@ const StudentClubsList: React.FC = () => {
         toast.error("获取社团列表失败")
       } finally {
         setLoading(false)
-        console.log('社团列表数据加载完成', new Date().toISOString());
       }
     }
 
     void fetchClubs()
-    
-    return () => {
-      console.log('ClubsList组件卸载', new Date().toISOString());
-    };
   }, [])
 
   // Add a color mapping function for categories
@@ -118,12 +106,6 @@ const StudentClubsList: React.FC = () => {
     }
     clubsByCategory[club.category].push(club)
   })
-
-  console.log('ClubsList组件渲染', {
-    clubsCount: clubs.length,
-    filteredCount: clubs.length,
-    loading
-  });
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-6">

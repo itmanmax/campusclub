@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// 使用相对路径
+// 修改BASE_URL为相对路径，使用vercel.json中配置的重写规则
 const BASE_URL = '/api';
 
 export interface Club {
