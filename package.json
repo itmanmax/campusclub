@@ -43,7 +43,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "concurrently \"npm run start\" \"node server.js\"",
-    "proxy": "node server.js"
+    "proxy": "node server.js",
+    "vercel-build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [

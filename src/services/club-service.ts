@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// 使用server.js的端口
-const BASE_URL = 'http://localhost:3001/api';
+// 使用相对路径
+const BASE_URL = '/api';
 
 export interface Club {
   clubId: number;
