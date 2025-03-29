@@ -40,7 +40,7 @@ const ClubInfo: React.FC = () => {
       setError(null);
       console.log('正在获取社团信息...');
       
-      const response = await fetch('http://localhost:3001/api/admin/club/info', {
+      const response = await fetch('/api/admin/club/info', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'
@@ -91,7 +91,7 @@ const ClubInfo: React.FC = () => {
       setLoading(true);
       console.log('正在更新社团信息...');
       
-      const response = await fetch('http://localhost:3001/api/admin/club', {
+      const response = await fetch('/api/admin/club', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

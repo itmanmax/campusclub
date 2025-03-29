@@ -31,7 +31,7 @@ const ActivityReview: React.FC = () => {
   const fetchPendingActivities = async () => {
     try {
       setLoading(true)
-      const response = await fetch("http://localhost:3001/api/admin/system/activities/pending", {
+      const response = await fetch("/api/admin/system/activities/pending", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           Accept: "*/*",
@@ -61,7 +61,7 @@ const ActivityReview: React.FC = () => {
   const handleReview = async (activityId: number, status: "approved" | "rejected", comment: string) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/admin/system/activities/${activityId}/review?status=${status}&comment=${encodeURIComponent(
+        `/api/admin/system/activities/${activityId}/review?status=${status}&comment=${encodeURIComponent(
           comment
         )}`,
         {

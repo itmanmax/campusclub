@@ -48,7 +48,7 @@ const SystemLogs: React.FC = () => {
       setError(null);
       console.log('开始获取系统日志...');
       
-      const response = await fetch('http://localhost:3001/api/admin/system/logs', {
+      const response = await fetch('/api/admin/system/logs', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'

@@ -51,13 +51,13 @@ const SearchResults: React.FC = () => {
         
         // 获取所有社团和活动
         const [clubsResponse, activitiesResponse] = await Promise.all([
-          fetch('http://localhost:3001/api/club-user/all-clubs', {
+          fetch('/api/club-user/all-clubs', {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`,
               'Accept': '*/*'
             },
           }),
-          fetch('http://localhost:3001/api/club-user/all-activities', {
+          fetch('/api/club-user/all-activities', {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`,
               'Accept': '*/*'

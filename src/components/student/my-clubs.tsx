@@ -27,7 +27,7 @@ const MyClubs: React.FC = () => {
   const fetchClubs = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:3001/api/club-user/joined-clubs', {
+      const response = await axios.get('/api/club-user/joined-clubs', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'

@@ -50,7 +50,7 @@ const ClubApply: React.FC = () => {
   const checkCreatedClubs = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:3001/api/club-user/my-created-clubs', {
+      const response = await fetch('/api/club-user/my-created-clubs', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'
@@ -84,7 +84,7 @@ const ClubApply: React.FC = () => {
 
   const checkApplicationStatus = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/clubs/${id}/application-status`, {
+      const response = await fetch(`/api/clubs/${id}/application-status`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'
@@ -106,7 +106,7 @@ const ClubApply: React.FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3001/api/clubs/apply', {
+      const response = await fetch('/api/clubs/apply', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

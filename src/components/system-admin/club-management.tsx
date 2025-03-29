@@ -49,7 +49,7 @@ const ClubManagement: React.FC = () => {
       setError(null);
       console.log('开始获取社团列表...');
       
-      const response = await fetch('http://localhost:3001/api/club-user/all-clubs', {
+      const response = await fetch('/api/club-user/all-clubs', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'
@@ -78,7 +78,7 @@ const ClubManagement: React.FC = () => {
     try {
       console.log('开始获取待审核社团列表...');
       
-      const response = await fetch('http://localhost:3001/api/admin/system/clubs/pending', {
+      const response = await fetch('/api/admin/system/clubs/pending', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'
@@ -103,7 +103,7 @@ const ClubManagement: React.FC = () => {
     try {
       console.log(`开始审核社团 ${clubId}, 状态: ${status}`);
       
-      const response = await fetch(`http://localhost:3001/api/admin/system/clubs/${clubId}/review?status=${status}&comment=${encodeURIComponent(comment)}`, {
+      const response = await fetch(`/api/admin/system/clubs/${clubId}/review?status=${status}&comment=${encodeURIComponent(comment)}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

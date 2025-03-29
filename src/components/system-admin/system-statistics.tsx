@@ -38,7 +38,7 @@ const SystemStatistics: React.FC = () => {
       console.log('开始获取统计数据...');
       
       // 直接使用fetch而不是service层，以便更好地调试
-      const response = await fetch('http://localhost:3001/api/admin/system/statistics', {
+      const response = await fetch('/api/admin/system/statistics', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'

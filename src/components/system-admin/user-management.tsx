@@ -50,7 +50,7 @@ const UserManagement: React.FC = () => {
       setError(null);
       console.log('开始获取用户列表...');
       
-      const response = await fetch('http://localhost:3001/api/admin/system/users', {
+      const response = await fetch('/api/admin/system/users', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'

@@ -127,7 +127,7 @@ const ClubActivitiesList: React.FC = () => {
       setError(null);
       console.log('正在获取社团活动列表...');
       
-      const response = await fetch('http://localhost:3001/api/admin/club/activities', {
+      const response = await fetch('/api/admin/club/activities', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'
@@ -178,7 +178,7 @@ const ClubActivitiesList: React.FC = () => {
       console.log('正在创建社团活动...');
       console.log('活动数据:', newActivity);
       
-      const response = await fetch('http://localhost:3001/api/admin/club/activities', {
+      const response = await fetch('/api/admin/club/activities', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -227,7 +227,7 @@ const ClubActivitiesList: React.FC = () => {
     try {
       console.log('正在生成签到码...');
       
-      const response = await fetch(`http://localhost:3001/api/admin/club/activities/${activityId}/check-in-code`, {
+      const response = await fetch(`/api/admin/club/activities/${activityId}/check-in-code`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -264,7 +264,7 @@ const ClubActivitiesList: React.FC = () => {
     try {
       console.log('正在取消活动...');
       
-      const response = await fetch(`http://localhost:3001/api/admin/club/activities/${activityId}`, {
+      const response = await fetch(`/api/admin/club/activities/${activityId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -303,7 +303,7 @@ const ClubActivitiesList: React.FC = () => {
       console.log('正在获取活动参与者列表...');
       
       // 获取参与者列表
-      const participantsResponse = await fetch(`http://localhost:3001/api/admin/club/activities/${activity.activityId}/participants`, {
+      const participantsResponse = await fetch(`/api/admin/club/activities/${activity.activityId}/participants`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'
@@ -324,7 +324,7 @@ const ClubActivitiesList: React.FC = () => {
       }
       
       // 获取签到统计
-      const statsResponse = await fetch(`http://localhost:3001/api/admin/club/activities/${activity.activityId}/check-in-stats`, {
+      const statsResponse = await fetch(`/api/admin/club/activities/${activity.activityId}/check-in-stats`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'

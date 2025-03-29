@@ -31,7 +31,7 @@ const ActivityHeatmap: React.FC = () => {
   const fetchActivities = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:3001/api/club-user/joined-activities', {
+      const response = await axios.get('/api/club-user/joined-activities', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'

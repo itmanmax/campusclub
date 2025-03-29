@@ -33,7 +33,7 @@ const ClubDetail: React.FC = () => {
     const fetchClubDetail = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:3001/api/club-user/${id}`, {
+        const response = await fetch(`/api/club-user/${id}`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Accept': '*/*'
@@ -65,7 +65,7 @@ const ClubDetail: React.FC = () => {
   // 检查用户是否已加入该社团
   const checkUserJoinedStatus = async (clubData: ClubDetailData) => {
     try {
-      const response = await axios.get('http://localhost:3001/api/club-user/joined-clubs', {
+      const response = await axios.get('/api/club-user/joined-clubs', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'
@@ -95,7 +95,7 @@ const ClubDetail: React.FC = () => {
     
     try {
       setIsJoining(true);
-      const response = await axios.post(`http://localhost:3001/api/clubs/${id}/join`, {}, {
+      const response = await axios.post(`/api/clubs/${id}/join`, {}, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*',

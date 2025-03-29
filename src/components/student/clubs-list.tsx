@@ -30,7 +30,7 @@ const StudentClubsList: React.FC = () => {
     const fetchClubs = async () => {
       try {
         setLoading(true)
-        const response = await fetch("http://localhost:3001/api/club-user/all-clubs", {
+        const response = await fetch("/api/club-user/all-clubs", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
             Accept: "*/*",

@@ -33,7 +33,7 @@ const StudentActivitiesList: React.FC = () => {
   const fetchActivities = async () => {
     try {
       setLoading(true)
-      const response = await fetch("http://localhost:3001/api/club-user/all-activities", {
+      const response = await fetch("/api/club-user/all-activities", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           Accept: "*/*",
@@ -56,7 +56,7 @@ const StudentActivitiesList: React.FC = () => {
 
   const handleSignUp = async (activityId: number) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/clubs/activities/${activityId}/sign-up`, {
+      const response = await fetch(`/api/clubs/activities/${activityId}/sign-up`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

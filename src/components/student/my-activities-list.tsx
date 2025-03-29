@@ -33,7 +33,7 @@ const MyActivitiesList: React.FC = () => {
   const fetchMyActivities = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:3001/api/club-user/joined-activities', {
+      const response = await axios.get('/api/club-user/joined-activities', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'
@@ -60,7 +60,7 @@ const MyActivitiesList: React.FC = () => {
 
   const handleCancelSignUp = async (activityId: number) => {
     try {
-      const response = await axios.delete(`http://localhost:3001/api/clubs/activities/${activityId}/sign-up`, {
+      const response = await axios.delete(`/api/clubs/activities/${activityId}/sign-up`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'
@@ -82,7 +82,7 @@ const MyActivitiesList: React.FC = () => {
 
   const handleCheckIn = async (activityId: number) => {
     try {
-      const response = await axios.post(`http://localhost:3001/api/clubs/activities/${activityId}/check-in`, {}, {
+      const response = await axios.post(`/api/clubs/activities/${activityId}/check-in`, {}, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'

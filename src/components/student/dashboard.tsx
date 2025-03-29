@@ -42,7 +42,7 @@ const StudentDashboard: React.FC = () => {
 
   const fetchJoinedClubs = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/club-user/joined-clubs', {
+      const response = await axios.get('/api/club-user/joined-clubs', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'
@@ -59,7 +59,7 @@ const StudentDashboard: React.FC = () => {
 
   const fetchActivities = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/club-user/joined-activities', {
+      const response = await axios.get('/api/club-user/joined-activities', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'
@@ -76,7 +76,7 @@ const StudentDashboard: React.FC = () => {
 
   const fetchPoints = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/user/credit-points', {
+      const response = await axios.get('/api/user/credit-points', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'

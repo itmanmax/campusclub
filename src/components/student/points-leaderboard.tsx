@@ -28,13 +28,13 @@ const PointsLeaderboard: React.FC = () => {
     try {
       setLoading(true);
       const [rankingResponse, pointsResponse] = await Promise.all([
-        axios.get('http://localhost:3001/api/user/credit-ranking?limit=10', {
+        axios.get('/api/user/credit-ranking?limit=10', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Accept': '*/*'
           }
         }),
-        axios.get('http://localhost:3001/api/user/credit-points', {
+        axios.get('/api/user/credit-points', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Accept': '*/*'

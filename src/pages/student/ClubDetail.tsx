@@ -30,7 +30,7 @@ const ClubDetail: React.FC = () => {
       try {
         setLoading(true);
         // 获取社团详情
-        const response = await fetch(`http://localhost:3001/api/club-user/${id}`, {
+        const response = await fetch(`/api/club-user/${id}`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Accept': '*/*'
@@ -47,7 +47,7 @@ const ClubDetail: React.FC = () => {
         }
         
         // 检查用户是否已加入社团
-        const joinedClubsResponse = await fetch('http://localhost:3001/api/club-user/joined-clubs', {
+        const joinedClubsResponse = await fetch('/api/club-user/joined-clubs', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Accept': '*/*'
@@ -75,7 +75,7 @@ const ClubDetail: React.FC = () => {
   const handleJoinClub = async () => {
     try {
       setJoinLoading(true);
-      const response = await fetch(`http://localhost:3001/api/clubs/${id}/join`, {
+      const response = await fetch(`/api/clubs/${id}/join`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -102,7 +102,7 @@ const ClubDetail: React.FC = () => {
   const handleQuitClub = async () => {
     try {
       setJoinLoading(true);
-      const response = await fetch(`http://localhost:3001/api/clubs/${id}/quit`, {
+      const response = await fetch(`/api/clubs/${id}/quit`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

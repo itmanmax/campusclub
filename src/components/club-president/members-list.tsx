@@ -39,7 +39,7 @@ const ClubMembersList: React.FC = () => {
       setError(null);
       console.log('正在获取社团成员列表...');
       
-      const response = await fetch('http://localhost:3001/api/admin/club/members', {
+      const response = await fetch('/api/admin/club/members', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'
@@ -70,7 +70,7 @@ const ClubMembersList: React.FC = () => {
     }
     
     try {
-      const response = await fetch(`http://localhost:3001/api/admin/club/members/${userId}/role`, {
+      const response = await fetch(`/api/admin/club/members/${userId}/role`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -105,7 +105,7 @@ const ClubMembersList: React.FC = () => {
     }
     
     try {
-      const response = await fetch(`http://localhost:3001/api/admin/club/members/${userId}`, {
+      const response = await fetch(`/api/admin/club/members/${userId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

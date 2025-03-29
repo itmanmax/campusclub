@@ -70,7 +70,7 @@ const ActivityCalendar: React.FC = () => {
     try {
       setLoading(true);
       // 使用正确的API端点获取已加入的活动
-      const response = await axios.get('http://localhost:3001/api/club-user/all-activities', {
+      const response = await axios.get('/api/club-user/all-activities', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'

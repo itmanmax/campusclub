@@ -36,7 +36,7 @@ const ClubAdminDashboard: React.FC = () => {
       setError(null);
       console.log('正在获取社团信息...');
       
-      const response = await fetch('http://localhost:3001/api/admin/club/info', {
+      const response = await fetch('/api/admin/club/info', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Accept': '*/*'

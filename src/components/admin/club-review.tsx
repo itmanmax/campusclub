@@ -22,7 +22,7 @@ const ClubReview: React.FC = () => {
   const fetchPendingClubs = async () => {
     try {
       setLoading(true)
-      const response = await fetch("http://localhost:3001/api/admin/system/clubs/pending", {
+      const response = await fetch("/api/admin/system/clubs/pending", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           Accept: "*/*",
@@ -52,7 +52,7 @@ const ClubReview: React.FC = () => {
   const handleReview = async (clubId: number, status: "active" | "rejected", comment: string) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/admin/system/clubs/${clubId}/review?status=${status}&comment=${encodeURIComponent(
+        `/api/admin/system/clubs/${clubId}/review?status=${status}&comment=${encodeURIComponent(
           comment
         )}`,
         {

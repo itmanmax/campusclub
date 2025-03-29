@@ -41,14 +41,14 @@ const ActivityRecommendations: React.FC = () => {
       };
 
       // 获取个性化推荐
-      const personalResponse = await axios.get('http://localhost:3001/api/activities/recommend/personal?limit=3', { headers });
+      const personalResponse = await axios.get('/api/activities/recommend/personal?limit=3', { headers });
       if (personalResponse.data.code === 200) {
         setPersonalRecommendations(personalResponse.data.data);
         
         // 如果有个性化推荐，获取第一个活动的相似活动
         if (personalResponse.data.data.length > 0) {
           const firstActivityId = personalResponse.data.data[0].activityId;
-          const similarResponse = await axios.get(`http://localhost:3001/api/activities/recommend/similar/${firstActivityId}?limit=2`, { headers });
+          const similarResponse = await axios.get(`/api/activities/recommend/similar/${firstActivityId}?limit=2`, { headers });
           if (similarResponse.data.code === 200) {
             setSimilarActivities(similarResponse.data.data);
           }

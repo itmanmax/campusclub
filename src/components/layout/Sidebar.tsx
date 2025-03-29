@@ -78,7 +78,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onLogout }) => {
       const token = localStorage.getItem('token');
       if (!token) return;
       
-      const response = await axios.get('http://localhost:3001/api/club-user/joined-clubs', {
+      const response = await axios.get('/api/club-user/joined-clubs', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Accept': '*/*'
